@@ -1,0 +1,190 @@
+/* VARIABLES */
+$baseAnimationDuration: 18s;
+$size: 100px;
+$svgSize: 70px;
+
+// Variables specific for curves
+$animationStep: 2;
+$increase: pi() / 100;
+
+$backgroundColor: rgb(245, 234, 176);
+$fontColor: rgb(255, 208, 0);
+$strokeColor: rgb(255, 208, 0);
+$fillColor: #000000;
+
+/* Возможно дополнительное использование */
+$strokeStrokeWidth: 0%;
+$strokeStrokeColor: black;
+$fillStrokeWidth: 0%;
+$fillStrokeColor: black;
+
+/* KEYFRAMES */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* STYLES */
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html, body {
+    display: flex;
+  width: 100%;
+  height: 100%;
+  background: $backgroundColor;
+  font-family: 'Lato', sans-serif;
+  color: $fontColor;
+}
+
+.card_weather {
+    width: 350px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.65);  /* Темный фон с прозрачностью */
+    color: $fontColor;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Тень для карточки */
+    display: flex;
+    justify-content: space-around;  /* Центрирование содержимого по вертикали */
+    align-items: center;  /* Центрирование содержимого по горизонтали */
+    padding: 5px;
+    margin: auto;
+    position: absolute;
+    flex-direction: row;
+    top: 50%;
+    left: 50%;
+  /* Смещение карточки для точного центрирования */
+    backdrop-filter: blur(10px); // Применение размытия к области позади карточки
+    border: 1px solid rgba(255, 255, 255, 0.18); // Дополнительная рамка для усиления эффекта "стекла"
+    transition: all 0.4s;
+}
+
+.weather_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  // Текст выравнивается слева
+    margin-left: 20px;   /* Выравнивание текста по левому краю */
+}
+
+.main {
+    font-size: 15pt;
+}
+
+.semi_main {
+    font-size: 10pt;
+}
+
+.main, .semi_main {
+    margin: 0px ;
+}
+
+.container_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;  // Центрирование содержимого по вертикали
+    justify-content: space-around;  // Равномерное распределение содержимого
+    width: 100%;
+    transition: all 0.4s;
+    opacity: 1;
+}
+
+.status{
+    margin-left: 30px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+/* SVG STYLES */
+svg {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  shape-rendering: geometricPrecision;
+  margin-right: 0px;
+}
+
+g, path, circle, rect {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-origin: 50% 50%;
+  animation-duration: $baseAnimationDuration;
+  animation-direction: normal;
+}
+
+.climacon_component-stroke {
+  fill: $strokeColor;
+}
+
+.climacon_component-fill {
+  fill: $fillColor;
+}
+
+.climacon_componentWrap-sun {
+  animation-name: rotate;
+  transform-origin: 50px 50px;
+}
+  
+.card_weather:hover {
+    border-radius: 15px;
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0px 5px 10px  rgba(0, 0, 0, 0.705);
+    background: rgb(255, 247, 209);
+}
+  
+.card_weather:hover .container_wrapper {
+    height: 0px;
+    opacity: 0;
+  }
+  
+.container_wrapper2 {
+    height: 0%;
+    flex-direction: column;
+    width: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: all 0.4s;
+    font-size: 0px;
+    transform: rotate(90deg) scale(-1);
+    overflow: hidden;
+    position: absolute;
+    top: 0; // Расположение сверху карточки
+    left: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: row; // Элементы располагаются вертикально
+    justify-content: center; // Центрирование по вертикали
+    align-items: center; // Центрирование по горизонтали
+    width: 100%;
+    font-size: 15pt;
+    padding: 5px;
+    margin-bottom: 55px;
+}
+
+.info > div {
+    margin: 0px 10px; // Отступы для каждого элемента информации
+}
+  
+.card_weather:hover .container_wrapper2 {
+    opacity: 1;
+    height: 100%;
+    transform: rotate(0deg);
+  }
