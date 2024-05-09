@@ -31,6 +31,12 @@
         font-size: 1.25rem;
         width: 100%;
         margin-left: 5px;
+        color: rgba(52, 114, 170, 1);
+        font-weight: 500;
+        line-height: 30px;
+        font-size: 20px;
+    } ::placeholder {
+        color: rgba(52, 114, 170, 1);
     }
 
     input:focus {

@@ -1,27 +1,28 @@
-import React, { useState } from 'react'
-import {ReactComponent as SearchLogo} from './icons/Search.svg'
+import React, { useEffect, useState } from 'react'
+import { ReactComponent as SearchLogo } from './icons/Search.svg'
 import './SearchBar.scss'
+import axios from "axios";
 
-export const SearchBar = ({setResults}) => {
+export const SearchBar = ({ setResults }) => {
     const [input, setInput] = useState("")
 
-    const fetchData = (value) => {
-        fetch(`http://127.0.0.1:8000/api/get_city?city=${value}`)
-        .then((response) => response.json())
-        .then((json) => {
-            if (json.cod !== '400') {
-                const result = json.filter((data) => {
-                    return data && data.name && data.lat && data.lon 
-                })
-                setResults(result)
-            }
-        })
-        
-    }
-    const handleChange = (value) => {
-        setInput(value)
-        fetchData(value)
-    }
+    useEffect(() => {
+        const myRe = new RegExp(/^[а-яА-Я]+$/);
+        if (myRe.exec(input)) {
+            const Debounce = setTimeout(() => {
+                axios.get(`http://127.0.0.1:8000/api/get_city?city_query=${input}`)
+                    .then((response) => {
+                        console.log(response.data);
+                        setResults(response.data)
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }, 1000)
+            return () => clearTimeout(Debounce)
+        }
+    }, [setResults, input])
+
     return (
         <div className='input_wrapper'>
             <SearchLogo id="search_icon"/>

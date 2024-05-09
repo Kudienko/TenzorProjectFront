@@ -7,5 +7,12 @@
     border-radius: 10px;
     margin-top: 1rem;
     max-height: 300px;
-    overflow-y: scroll;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
 }
