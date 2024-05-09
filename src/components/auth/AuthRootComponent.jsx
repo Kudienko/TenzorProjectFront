@@ -1,19 +1,17 @@
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoginPage from "./login/LoginPage";
 import RegisterPage from "./register/RegisterPage";
 import "./style.scss";
-import { Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../store/thunks/loginThunk/loginThunk";
 import { registerUser } from "../../store/thunks/registerThunk/registerThunk";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../utils/yup/yup";
-import { registerSchema } from "../../utils/yup/yup";
+import { loginSchema, registerSchema } from "../../utils/yup/yup";
 
 function AuthRootComponent() {
   const location = useLocation();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -27,9 +25,7 @@ function AuthRootComponent() {
     ),
   });
 
-  console.log("errors", errors);
   const handleSubmitForm = async (data) => {
-    console.log("datad", data);
     if (location.pathname === "/login") {
       try {
         const userData = {
@@ -40,8 +36,7 @@ function AuthRootComponent() {
           client_id: "",
           client_secret: "",
         };
-        console.log(userData);
-        dispatch(loginUser(userData)); // createAsincThunk
+        dispatch(loginUser(userData));
         navigate("/");
       } catch (e) {
         return e;
@@ -54,8 +49,6 @@ function AuthRootComponent() {
           hashed_password: data.password,
           city: "Moscow",
         };
-        console.log("1231");
-        console.log(userData);
         dispatch(registerUser(userData));
         navigate("/");
       } else {
@@ -67,23 +60,13 @@ function AuthRootComponent() {
   return (
     <div className="root">
       <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          maxWidth={640}
-          margin="auto"
-          padding={5}
-          borderRadius={5}
-          boxShadow={"5px 5px 10px #ccc"}
-        >
+        <div className="box">
           {location.pathname === "/login" ? (
             <LoginPage register={register} errors={errors} />
           ) : location.pathname === "/register" ? (
             <RegisterPage register={register} errors={errors} />
           ) : null}
-        </Box>
+        </div>
       </form>
     </div>
   );

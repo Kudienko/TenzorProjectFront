@@ -25,8 +25,8 @@ export const SearchBar = ({ setResults }) => {
 
     return (
         <div className='input_wrapper'>
-            <SearchLogo id="search_icon" />
-            <input type="text" placeholder='Type to search...' value={input} onChange={(e) => setInput(e.target.value)} />
+            <SearchLogo id="search_icon"/>
+            <input type="text" placeholder='Type to search' value={input} onChange={(e) => handleChange(e.target.value)} />
         </div>
     )
 }
