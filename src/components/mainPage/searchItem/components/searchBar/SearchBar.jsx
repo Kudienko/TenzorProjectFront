@@ -10,7 +10,7 @@ export const SearchBar = ({ setResults }) => {
         const myRe = new RegExp(/^[а-яА-Я]+$/);
         if (myRe.exec(input)) {
             const Debounce = setTimeout(() => {
-                axios.get(`http://127.0.0.1:8000/api/get_city?city_query=${input}`)
+                axios.get(`http://127.0.0.1:8000/api/cities/get_cities?city=${input}`)
                     .then((response) => {
                         console.log(response.data);
                         setResults(response.data)
@@ -25,8 +25,8 @@ export const SearchBar = ({ setResults }) => {
 
     return (
         <div className='input_wrapper'>
-            <SearchLogo id="search_icon"/>
-            <input type="text" placeholder='Type to search' value={input} onChange={(e) => handleChange(e.target.value)} />
+            <SearchLogo id="search_icon" />
+            <input type="text" placeholder='Введите название города' value={input} onChange={(e) => setInput(e.target.value)} />
         </div>
     )
 }

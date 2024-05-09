@@ -3,7 +3,6 @@ import { loginUser } from "../../thunks/loginThunk/loginThunk";
 
 const initialState = {
   user: {},
-  isLogged: false,
 };
 
 const loginSlice = createSlice({
@@ -13,7 +12,6 @@ const loginSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
-      state.isLogged = true;
     });
   },
 });

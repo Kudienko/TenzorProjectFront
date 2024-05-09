@@ -1,22 +1,30 @@
 import React, { useState } from 'react'
-// import { ReactComponent as SearchLogo } from "./icons/Search.svg";
 import './SearchItem.scss'
 import { SearchBar } from './components/searchBar/SearchBar';
 import { SearchResultList } from './components/searchResultsList/SearchResultList';
-
-
-
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 
 function SearchItem() {
     const [results, setResults] = useState([])
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickAway = () => {
+        setOpen(false);
+    };
+    const handleClick = () => {
+        setOpen((prev) => !prev);
+    };
 
     return (
-        <>
-            <div className="search_bar_container">
-                <SearchBar setResults={setResults}/>
-                <SearchResultList results={results}/>
+        <ClickAwayListener onClickAway={handleClickAway}>
+            <div className="search_bar_container" onClick={handleClick}>
+                <SearchBar setResults={setResults} />
+                {
+                    open ? (<SearchResultList results={results} />) : null
+                }
+
             </div>
-        </>
+        </ClickAwayListener>
     )
 }
 

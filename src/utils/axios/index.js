@@ -5,7 +5,7 @@ export const instanceLogin = axios.create({
   timeout: 1000,
   withCredentials: true,
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
   },
 });
 

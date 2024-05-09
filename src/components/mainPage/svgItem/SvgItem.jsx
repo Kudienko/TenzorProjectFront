@@ -11,8 +11,8 @@ import SnowAlt from "./svgIcons/SnowAlt";
 import Fog from "./svgIcons/Fog";
 import Lightning from "./svgIcons/Lightning";
 
-function SvgItem(props) {
-  const { weather } = props;
+function SvgItem({weather}) {
+  
   const getSvgIcon = () => {
     switch (weather) {
       case "sunny":

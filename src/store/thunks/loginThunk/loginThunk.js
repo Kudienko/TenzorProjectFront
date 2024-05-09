@@ -5,7 +5,7 @@ export const loginUser = createAsyncThunk(
   "/login",
   async (data, { rejectWithValue }) => {
     try {
-      const user = await instanceLogin.post("/api/auth/jwt/login", data);
+      const user = await instanceLogin.post("/api/auth/login", data);
       return user;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -16,3 +16,4 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+  

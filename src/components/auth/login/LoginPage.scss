@@ -54,6 +54,10 @@
     clip-path: inset(0 round 10px); // обрезает элемент по границам, сохраняя скругление
 }
 
+input:-webkit-autofill {
+    transition: all 5000s ease-in-out 0s;
+  }
+
 input.error {
     border-color: red;
 }

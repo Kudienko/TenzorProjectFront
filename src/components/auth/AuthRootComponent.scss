@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .wrapper {
+    width: 80%;
+
+    .box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      border-radius: 30px;
+    }
+
+    .incitingText {
+      color: #1900d5;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+}
