@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.next_days_wrapper {
+  width: 360px;
+  height: 606px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+  box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+  border-image-slice: 1;
+}
+
+.next_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 125px;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 30px;
+  position:relative;
+  z-index: 1;
+  backdrop-filter: blur(20px);
+  background: linear-gradient(180deg, rgba(52, 114, 170, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
+}
+
+.info_text {
+  margin-left: 10px;
+}
+
+.next_info_date {
+  font-size: 22px;
+  color: #4287C7;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.next_temp {
+  font-size: 28px;
+}

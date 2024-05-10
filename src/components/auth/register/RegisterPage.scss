@@ -58,8 +58,11 @@ input.error {
 }
 
 .error-message {
+  position: absolute;
   color: red;
   font-size: 14px;
+  margin-left: 30px;
+  padding: 5px;
 }
 
 .register-button {

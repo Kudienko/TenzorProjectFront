@@ -39,6 +39,24 @@
   grid-template-columns: 0.75fr 0.75fr;
 }
 
+video {
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.weather_icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px 10px 10px;
+}
+
+//next_days
+
 .next_days_wrapper {
   width: 360px;
   height: 606px;
@@ -56,33 +74,6 @@
   border-image-slice: 1;
 }
 
-.current_day_wrapper {
-  width: 880px;
-  height: 606px;
-  margin: auto;
-  text-align: center;
-  padding: 20px;
-  font-family: 'Roboto', sans-serif;
-  border-radius: 30px;
-  position: relative;
-  z-index: 1;
-  backdrop-filter: blur(4px);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
-  box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
-  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
-  border-image-slice: 1;
-}
-
-video {
-  -o-object-fit: cover;
-  object-fit: cover;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
 .next_info {
   display: flex;
   justify-content: center;
@@ -94,11 +85,10 @@ video {
   padding: 10px;
   font-family: 'Roboto', sans-serif;
   border-radius: 30px;
-  position: relative;
+  position:relative;
   z-index: 1;
   backdrop-filter: blur(20px);
   background: linear-gradient(180deg, rgba(52, 114, 170, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
-
 }
 
 .info_text {
@@ -114,6 +104,27 @@ video {
 
 .next_temp {
   font-size: 28px;
+}
+
+
+// current_days 
+
+
+.current_day_wrapper {
+  width: 880px;
+  height: 606px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+  box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+  border-image-slice: 1;
 }
 
 .current_info {
@@ -134,7 +145,8 @@ video {
   background: linear-gradient(180deg, rgba(52, 114, 170, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
 }
 
-.info_titles, .info_values {
+.info_titles,
+.info_values {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -163,18 +175,12 @@ video {
   border: none;
 }
 
-.weather_icon {
-  width: 30px;
-  height: 30px;
-  margin: 0 10px 10px 10px;
-}
-
 .current_temp {
   margin-top: 20px;
   font-size: 24px;
 }
 
-.current_info_title{
+.current_info_title {
   font-size: 22px;
   color: #4287C7;
   font-weight: bold;
