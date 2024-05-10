@@ -4,7 +4,6 @@ import SvgItem from "../svgItem/SvgItem"; // Обновите путь в соо
 
 function NextPlate() {
   return (
-    <div className="next_days_wrapper">
       <div className="next_info">
         <SvgItem weather={"sunny"} />
         <div className="info_text">
@@ -16,7 +15,6 @@ function NextPlate() {
           </p>
         </div>
       </div>
-    </div>
   );
 }
 

@@ -4,6 +4,7 @@ import videoBg from '../../../assets/weather/rain.mp4';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../../store/thunks/registerThunk/registerThunk";
+import { validateEmail, validateLogin, validatePasswords } from './RegisterValidation'; // Путь может отличаться
 
 function RegisterPage() {
   const [login, setLogin] = useState('');
@@ -19,17 +20,6 @@ function RegisterPage() {
 
   const moveToRegister = () => {
     navigate("/login");
-  }
-
-  // Регулярное выражение для проверки email
-  const validateEmail = (email) => {
-    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return re.test(String(email).toLowerCase());
-  }
-
-  // Проверка длины имени пользователя
-  const validateLogin = (login) => {
-    return login.length >= 4;
   }
 
   const handleRegister = (e) => {
@@ -50,7 +40,7 @@ function RegisterPage() {
       setLoginError('');
     }
 
-    if (password !== repeatPassword) {
+    if (!validatePasswords(password, repeatPassword)) {
       setPasswordError("Пароли не совпадают");
       isValid = false;
     } else {
@@ -59,9 +49,9 @@ function RegisterPage() {
 
     if (isValid) {
       const userData = {
-        login: login,
-        email: email,
-        password: password,
+        login,
+        email,
+        password,
       };
       dispatch(registerUser(userData));
       // navigate("/");

@@ -3,9 +3,8 @@ import "./CurrentPlate.scss";
 import SvgItem from "../svgItem/SvgItem";
 import { ReactComponent as ClothIcon } from '../../../assets/btn.svg';
 
-function CurrentPlate({ setModalOpen }) {
+function CurrentPlate({ setmodalInfoIsOpen }) {
   return (
-    <div className="current_day_wrapper">
       <div className="current_info">
         <div className="info_titles">
           <div className="info_section">
@@ -26,13 +25,12 @@ function CurrentPlate({ setModalOpen }) {
             <p className="current_temp">+5°</p>
           </div>
           <div className="button_section">
-            <button className="round_button" onClick={() => setModalOpen(true)}>
+            <button className="round_button" onClick={() => setmodalInfoIsOpen(true)}>
               <ClothIcon />
             </button>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
