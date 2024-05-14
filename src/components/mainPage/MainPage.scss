@@ -31,6 +31,29 @@
   top: 0;
   padding-top: 1em;
   z-index: 2;
+  display: flex;
+  padding-top: 10vh;
+
+
+  .city {
+    color: rgba(52, 114, 170, 1);
+    height: 3.125em;
+    width: 6.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    backdrop-filter: blur(4px);
+    font-size: 1.25rem;
+    /* Размытие фона и градиент */
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+    /* Внутренняя тень */
+    box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+    /* Вы можете изменить толщину границы по желанию */
+    border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+    border-image-slice: 1;
+    border-radius: 30px;
+  }
 }
 
 .main_wrapper {
@@ -58,11 +81,14 @@ video {
 //next_days
 
 .next_days_wrapper {
-  width: 360px;
-  height: 606px;
-  margin: auto;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 22.5em;
+  height: 37.875em;
+  margin: 1.25em;
   text-align: center;
-  padding: 20px;
+  padding: 1.25em;
   font-family: 'Roboto', sans-serif;
   border-radius: 30px;
   position: relative;
@@ -85,7 +111,7 @@ video {
   padding: 10px;
   font-family: 'Roboto', sans-serif;
   border-radius: 30px;
-  position:relative;
+  position: relative;
   z-index: 1;
   backdrop-filter: blur(20px);
   background: linear-gradient(180deg, rgba(52, 114, 170, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
@@ -111,11 +137,14 @@ video {
 
 
 .current_day_wrapper {
-  width: 880px;
-  height: 606px;
-  margin: auto;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 55em;
+  height: 37.875em;
+  margin: 1.25em;
   text-align: center;
-  padding: 20px;
+  padding: 1.25em;
   font-family: 'Roboto', sans-serif;
   border-radius: 30px;
   position: relative;

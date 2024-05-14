@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ReactComponent as SearchLogo } from './icons/Search.svg'
 import './SearchBar.scss'
 import axios from "axios";
 
-export const SearchBar = ({ setResults }) => {
-    const [input, setInput] = useState("")
+export const SearchBar = ({ setResults, input, setInput }) => {
 
     useEffect(() => {
         const myRe = new RegExp(/^[а-яА-Я]+$/);

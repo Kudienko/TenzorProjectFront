@@ -11,11 +11,11 @@ import SnowAlt from "./svgIcons/SnowAlt";
 import Fog from "./svgIcons/Fog";
 import Lightning from "./svgIcons/Lightning";
 
-function SvgItem({weather}) {
-  
+function SvgItem({ weather }) {
+
   const getSvgIcon = () => {
     switch (weather) {
-      case "sunny":
+      case "ясно":
         return <Sunny />; // солнце анимированное
       case "moonly":
         return <Moonly />; // луна анимированная
@@ -23,15 +23,19 @@ function SvgItem({weather}) {
         return <Snowy />; // Снежинка анимированноа
       case "windy":
         return <Windy />; // ветер анимированное
-      case "cloudly":
+      case "пасмурно":
         return <Cloudly />; // облачно анимированное
-      case "rain":
+      case "переменная облачность":
+        return <Cloudly />; 
+      case "облачно с прояснениями":
+        return <Cloudly />; 
+      case "небольшой дождь":
         return <Rain />; // Дождь анимированное
       case "hail":
         return <Hail />; // град не работает
       case "cloudSnow":
         return <CloudSnow />; // снег не работает
-      case "snowAlt":
+      case "небольшой снег":
         return <SnowAlt />; // снежинка и тучка не анимированная
       case "fog":
         return <Fog />; // Туман анимированный

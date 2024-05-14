@@ -4,9 +4,10 @@ import { SearchBar } from './components/searchBar/SearchBar';
 import { SearchResultList } from './components/searchResultsList/SearchResultList';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 
-function SearchItem() {
+function SearchItem({setCity}) {
     const [results, setResults] = useState([])
     const [open, setOpen] = React.useState(false);
+    const [input, setInput] = useState("")
 
     const handleClickAway = () => {
         setOpen(false);
@@ -18,9 +19,9 @@ function SearchItem() {
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <div className="search_bar_container" onClick={handleClick}>
-                <SearchBar setResults={setResults} />
+                <SearchBar setResults={setResults} input={input} setInput={setInput}/>
                 {
-                    open ? (<SearchResultList results={results} />) : null
+                    open ? (<SearchResultList results={results} setCity={setCity} setInput={setInput} />) : null
                 }
 
             </div>

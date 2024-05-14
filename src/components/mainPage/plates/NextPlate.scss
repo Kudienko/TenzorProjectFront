@@ -1,29 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.next_days_wrapper {
-  width: 360px;
-  height: 606px;
-  margin: auto;
-  text-align: center;
-  padding: 20px;
-  font-family: 'Roboto', sans-serif;
-  border-radius: 30px;
-  position: relative;
-  z-index: 1;
-  backdrop-filter: blur(4px);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
-  box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
-  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
-  border-image-slice: 1;
-}
-
 .next_info {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 125px;
-  margin: auto;
+  width: 18.75em;
+  height: 7em;
+  margin-bottom: 1.25em;
   text-align: center;
   padding: 10px;
   font-family: 'Roboto', sans-serif;

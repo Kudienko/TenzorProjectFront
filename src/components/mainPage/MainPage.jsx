@@ -5,11 +5,14 @@ import videoBg from '../../assets/weather/rain.mp4';
 import CurrentPlate from "./plates/CurrentPlate";
 import NextPlate from "./plates/NextPlate";
 import { Modal } from './modal/Modal';
-import SvgItem from "./svgItem/SvgItem";
+import { useSelector } from "react-redux";
 
 function MainPage() {
+  const { weather } = useSelector((state) => state.weather)
+  console.log(weather);
 
   const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
+  const [city, setCity] = useState("Москва");
 
   return (
     <div className="wrapper">
@@ -19,13 +22,26 @@ function MainPage() {
       />
       <video src={videoBg} autoPlay loop muted />
       <div className="content">
-        <header className="header"><SearchItem /></header>
+        <header className="header">
+          <div className="city-container">
+            <div className="city">{city}</div>
+          </div>
+          <SearchItem setCity={setCity} />
+        </header>
         <div className="main_wrapper">
           <div className="next_days_wrapper">
-            <NextPlate />
+            {
+              weather.data && weather.data.map((day, id) => (
+                <NextPlate key={id} weather={day} />
+              ))
+            }
           </div>
           <div className="current_day_wrapper">
-            <CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} />
+            {
+                weather.data &&
+                <CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} period={weather.data[1].periods} />
+              
+            }
           </div>
         </div>
       </div>
