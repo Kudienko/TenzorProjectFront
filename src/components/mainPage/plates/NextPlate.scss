@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+.next_days_wrapper {
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 22.5em;
+  height: 37.875em;
+  margin: 1.25em;
+  text-align: center;
+  padding: 1.25em;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+  box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+  border-image-slice: 1;
+}
+
 .next_info {
   display: flex;
   justify-content: center;
@@ -15,7 +35,18 @@
   z-index: 1;
   backdrop-filter: blur(20px);
   background: linear-gradient(180deg, rgba(52, 114, 170, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
+  cursor: pointer;
+
 }
+
+.highlight {
+  border: 3px solid #9a9aec;
+}
+
+.next_info:hover {
+  background: linear-gradient(180deg, rgba(2, 50, 248, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
+}
+
 
 .info_text {
   margin-left: 10px;
