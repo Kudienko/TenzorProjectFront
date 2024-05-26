@@ -1,36 +1,28 @@
 import axios from "axios";
 
 export const instanceLogin = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-  timeout: 1000,
-  withCredentials: true,
+  baseURL: "https://tensor-project-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const instanceRegister = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-  timeout: 1000,
-  withCredentials: true,
+  baseURL: "https://tensor-project-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const getCity = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-  timeout: 1000,
-  withCredentials: true,
+  baseURL: "https://tensor-project-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const instanceWeather = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-  timeout: 1000,
-  withCredentials: true,
+  baseURL: "https://tensor-project-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },

@@ -1,18 +1,37 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./MainPage.scss";
 import SearchItem from "./searchItem/SearchItem";
 import videoBg from '../../assets/weather/rain.mp4';
 import CurrentPlate from "./plates/CurrentPlate";
 import NextPlate from "./plates/NextPlate";
 import { Modal } from './modal/Modal';
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getWeatherThunk} from "../../store/thunks/getWeatherThunk/getWeatherThunk";
+
 
 function MainPage() {
+    const dispatch = useDispatch();
+    const [oneRender, setOneRender] = useState(0);
+    const [city, setCity] = useState("Москва");
+
+
+    useEffect(() => {
+        if (oneRender === 0) {
+            const weatherData = {
+                lat: 55.751244,
+                lon:  37.618423,
+            };
+            dispatch(getWeatherThunk(weatherData));
+            setOneRender(1)
+        }
+
+    }, [oneRender, dispatch]);
+
   const { weather } = useSelector((state) => state.weather)
   console.log(weather);
 
   const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
-  const [city, setCity] = useState("Москва");
+
 
   return (
     <div className="wrapper">

@@ -9,7 +9,7 @@ export const SearchBar = ({ setResults, input, setInput }) => {
         const myRe = new RegExp(/^[а-яА-Я]+$/);
         if (myRe.exec(input)) {
             const Debounce = setTimeout(() => {
-                axios.get(`http://127.0.0.1:8000/api/cities/get_cities?city=${input}`)
+                axios.get(`https://tensor-project-backend.onrender.com/api/cities/get_cities?city=${input}`)
                     .then((response) => {
                         console.log(response.data);
                         setResults(response.data)
