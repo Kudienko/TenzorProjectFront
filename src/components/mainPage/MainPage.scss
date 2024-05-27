@@ -37,12 +37,12 @@
 
   .city {
     color: rgba(52, 114, 170, 1);
-    height: 3.125em;
-    width: 6.25em;
+    height: 2.95em;
+    width: 8.5em;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin-right: 15px;
     backdrop-filter: blur(4px);
     font-size: 1.25rem;
     /* Размытие фона и градиент */
@@ -59,7 +59,7 @@
 .main_wrapper {
   flex: 1 0 auto;
   display: grid;
-  grid-template-columns: 0.75fr 0.75fr;
+  grid-template-columns: 0.70fr 0.75fr;
 }
 
 video {
@@ -132,6 +132,27 @@ video {
   border-image-slice: 1;
 }
 
+.button_account{
+  margin-left: 15px;
+}
+
+.round_button2 {
+  width: 3.688em;
+  height: 3.688em;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: 7px;
+  border: none;
+  backdrop-filter: blur(4px);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+  box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+}
 
 
 
