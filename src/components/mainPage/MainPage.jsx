@@ -103,10 +103,12 @@ function MainPage() {
                     <SearchItem setCity={setCity} handleCityChange={handleCityChange}/>
                 </header>
                 <div className="main_wrapper">
-                    {weatherData === [] ? <NextPlate data={weatherData} onDateClick={handleDateClick}
+                    {/*<NextPlate data={weatherData} onDateClick={handleDateClick} selectedDate={selectedDate}/>*/}
+                    {weatherData.length > 0 ? <NextPlate data={weatherData} onDateClick={handleDateClick}
                                                      selectedDate={selectedDate}/> : <div className="next_info_no_data">
                         <div className="no_data_text">Нет данных</div>
                     </div>}
+                    {/*<CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} data={selectedData}/>*/}
                     {selectedData ? <CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} data={selectedData}/> :
                         <div className="current_day_wrapper_no_data">
                             <div className="no_data_text">Нет данных</div>

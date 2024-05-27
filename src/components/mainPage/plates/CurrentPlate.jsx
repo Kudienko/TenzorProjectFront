@@ -4,7 +4,7 @@ import SvgItem from "../svgItem/SvgItem";
 import {ReactComponent as ClothIcon} from '../../../assets/btn.svg';
 
 function CurrentPlate({setmodalInfoIsOpen, data}) {
-    if (data) {
+    if (!data) {
         return <div className="current-plate">Выберите дату</div>;
     }
 
