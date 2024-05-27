@@ -3,18 +3,14 @@ import './SearchResult.scss'
 import { useDispatch } from "react-redux";
 import { getWeatherThunk } from "../../../../../store/thunks/getWeatherThunk/getWeatherThunk";
 
-export const SearchResult = ({ result, setCity, setInput }) => {
+export const SearchResult = ({ result, setCity, setInput, handleCityChange  }) => {
 
   const dispatch = useDispatch();
 
-  const onClick = (result) => {
+  const onClick = async (result) => {
     setInput("")
     setCity(result.city_name)
-    const weatherData = {
-      lat: result.lat,
-      lon: result.lon,
-    };
-    dispatch(getWeatherThunk(weatherData));
+    await handleCityChange(result.city_name, result.lat, result.lon);
   }
 
   return (
