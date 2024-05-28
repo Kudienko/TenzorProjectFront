@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    overflow-y: auto;
+    transition: opacity 0.3s;
+    z-index: 999;
+}
+
+.acc-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    backdrop-filter: blur(4px);
+}
+
+.acc-content {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 40px;
+    transform: translateY(-50px);
+    transition: opacity 0.3s, transform 1s;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+    box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+    border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+    border-image-slice: 1;
+}
+
+.acc-close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.close-icon {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.grid-container-acc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.user-name {
+    font-size: 18px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.acc-button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    background-color: #4287C7;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #306BA6;
+    }
+}
+
+/* open */
+.modal--entering,
+.modal--entered {
+    opacity: 1;
+}
+
+.modal--entering .acc-content,
+.modal--entered .acc-content {
+    transform: translateY(0);
+}
+
+/* close */
+.modal--exiting,
+.modal--exited {
+    opacity: 0;
+}
+
+.modal--exiting .acc-content,
+.modal--exited .acc-content {
+    transform: translateY(-50px);
+}
+
+/* name titles*/
+
+.modal-title{
+    color: rgba(51, 65, 85, 1);
+}
+
+.user-name,
+.gender-name,
+.mail-name {
+    color: rgba(51, 65, 85, 1);
+    font-weight: 600;
+}
+
+
+/* radio */
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 19px;
+    background-color: #4287C7;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 300px;
+    font-size: 14px;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+    color: #EEE;
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked+.name {
+    background-color: #EEE;
+    color: rgba(51, 65, 85, 1);
+    font-weight: 600;
+    font-size: 14px;
+}
