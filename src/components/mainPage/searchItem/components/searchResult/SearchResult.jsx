@@ -1,11 +1,8 @@
 import React from 'react'
 import './SearchResult.scss'
-import { useDispatch } from "react-redux";
-import { getWeatherThunk } from "../../../../../store/thunks/getWeatherThunk/getWeatherThunk";
 
 export const SearchResult = ({ result, setCity, setInput, handleCityChange  }) => {
 
-  const dispatch = useDispatch();
 
   const onClick = async (result) => {
     setInput("")

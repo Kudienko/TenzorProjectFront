@@ -13,9 +13,7 @@ import rainVideo from '../../assets/weather/rain.mp4';
 import snowyVideo from '../../assets/weather/snowy.mp4';
 import windyVideo from '../../assets/weather/windy.mp4';
 import stormVideo from '../../assets/weather/storm.mp4';
-import { ReactComponent as ClothIcon } from '../../assets/btn.svg';
 import { ReactComponent as AccIcon } from '../../assets/acc.svg';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -31,6 +29,21 @@ function MainPage() {
         'гроза': stormVideo
     };
 
+    const initialStateClothes = {
+        female: {
+            body: ['Топ'],
+            feet: ['Кеды', 'Тапочки', 'Кроссовки'],
+            head: ['Кепка', 'Шляпка'],
+            legs: ['Шорты', 'Юбка', 'Брюки'],
+        },
+        male: {
+            body: ['Футболка', 'Рубашка'],
+            feet: ['Кроссовки', 'Мокасины'],
+            head: ['Кепка', 'Панамка'],
+            legs: ['Брюки'],
+        },
+    };
+
     const dispatch = useDispatch();
     const [city, setCity] = useState("Москва");
     const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
@@ -38,6 +51,8 @@ function MainPage() {
     const [weatherData, setWeatherData] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const [backgroundVideo, setBackgroundVideo] = useState(sunnyVideo); // Установить солнечное видео по умолчанию
+    const [clothes, setClothes] = useState(initialStateClothes);
+
 
     useEffect(() => {
         const fetchWeatherData = async () => {
@@ -86,12 +101,12 @@ function MainPage() {
     };
 
     const selectedData = weatherData.find((item) => item.date === selectedDate);
-    console.log(weatherData)
     return (
         <div className="wrapper">
             <Modal
                 isOpen={modalInfoIsOpen}
                 onClose={() => setmodalInfoIsOpen(false)}
+                clothes={clothes}
             />
 
             <ModalAcc
@@ -117,13 +132,11 @@ function MainPage() {
                     </div>
                 </header>
                 <div className="main_wrapper">
-                    {/*<NextPlate data={weatherData} onDateClick={handleDateClick} selectedDate={selectedDate}/>*/}
                     {weatherData.length > 0 ? <NextPlate data={weatherData} onDateClick={handleDateClick}
                         selectedDate={selectedDate} /> : <div className="next_info_no_data">
                         <div className="no_data_text">Нет данных</div>
                     </div>}
-                    {/*<CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} data={selectedData}/>*/}
-                    {selectedData ? <CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} data={selectedData} /> :
+                    {selectedData ? <CurrentPlate setmodalInfoIsOpen={setmodalInfoIsOpen} data={selectedData} setClothes={setClothes}/> :
                         <div className="current_day_wrapper_no_data">
                             <div className="no_data_text">Нет данных</div>
                         </div>}

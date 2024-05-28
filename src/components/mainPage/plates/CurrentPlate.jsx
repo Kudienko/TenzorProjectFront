@@ -3,20 +3,47 @@ import "./CurrentPlate.scss";
 import SvgItem from "../svgItem/SvgItem";
 import {ReactComponent as ClothIcon} from '../../../assets/btn.svg';
 
-function CurrentPlate({setmodalInfoIsOpen, data}) {
+function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
     if (!data) {
-        return <div className="current-plate">Выберите дату</div>;
+        return <div className="current_day_wrapper_no_data">
+            <div className="no_data_text">Нет данных</div>
+        </div>;
     }
 
     const periodOrder = ["Утром", "Днем", "Вечером"];
 
 
-
     const weatherArrayCopy = [...data.periods];
+
     function comparePeriod(a, b) {
         return periodOrder.indexOf(a.period) - periodOrder.indexOf(b.period);
     }
+
     weatherArrayCopy.sort(comparePeriod);
+    console.log(weatherArrayCopy[0].clothes.male);
+    const handleClick = (id) => {
+        const male = weatherArrayCopy[id].clothes.male
+        const female = weatherArrayCopy[id].clothes.female
+        setClothes((prevState) => ({
+            ...prevState,
+            female: {
+                ...prevState.female,
+                body: [...prevState.female.body, female.body[0]],
+                feet: [...prevState.female.feet, female.feet[0]],
+                head: [...prevState.female.head, female.head[0]],
+                legs: [...prevState.female.legs, female.legs[0]],
+            },
+            male: {
+                ...prevState.male,
+                body: [...prevState.male.body, male.body[0]],
+                feet: [...prevState.male.feet, male.feet[0]],
+                head: [...prevState.male.head, male.head[0]],
+                legs: [...prevState.male.legs, male.legs[0]],
+            },
+        }));
+        setmodalInfoIsOpen(true);
+    }
+
 
     return (
         <div className="current_day_wrapper">
@@ -47,8 +74,8 @@ function CurrentPlate({setmodalInfoIsOpen, data}) {
                                 </p>
                             </div>
                             <div className="button_section">
-                                <button className="round_button" onClick={() => setmodalInfoIsOpen(true)}>
-                                    <ClothIcon/>
+                                <button className="round_button" onClick={() => handleClick(id)}>
+                                    <ClothIcon />
                                 </button>
                             </div>
                         </div>
