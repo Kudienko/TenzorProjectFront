@@ -101,6 +101,11 @@ function MainPage() {
     };
 
     const selectedData = weatherData.find((item) => item.date === selectedDate);
+
+    // useEffect(() => {
+    //     console.log('Clothes state updated:', clothes);
+    // }, [clothes]);
+
     return (
         <div className="wrapper">
             <Modal

@@ -20,7 +20,7 @@ function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
     }
 
     weatherArrayCopy.sort(comparePeriod);
-    console.log(weatherArrayCopy[0].clothes.male);
+
     const handleClick = (id) => {
         const male = weatherArrayCopy[id].clothes.male
         const female = weatherArrayCopy[id].clothes.female
@@ -28,17 +28,17 @@ function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
             ...prevState,
             female: {
                 ...prevState.female,
-                body: [...prevState.female.body, female.body[0]],
-                feet: [...prevState.female.feet, female.feet[0]],
-                head: [...prevState.female.head, female.head[0]],
-                legs: [...prevState.female.legs, female.legs[0]],
+                body: [...prevState.female.body, ...female.body],
+                feet: [...prevState.female.feet, ...female.feet],
+                head: [...prevState.female.head, ...female.head],
+                legs: [...prevState.female.legs, ...female.legs],
             },
             male: {
                 ...prevState.male,
-                body: [...prevState.male.body, male.body[0]],
-                feet: [...prevState.male.feet, male.feet[0]],
-                head: [...prevState.male.head, male.head[0]],
-                legs: [...prevState.male.legs, male.legs[0]],
+                body: [...prevState.male.body, ...male.body],
+                feet: [...prevState.male.feet, ...male.feet],
+                head: [...prevState.male.head, ...male.head],
+                legs: [...prevState.male.legs, ...male.legs],
             },
         }));
         setmodalInfoIsOpen(true);

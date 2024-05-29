@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Modal.scss'
 import { Transition } from 'react-transition-group'
 import { ReactComponent as IconClose } from '../../../assets/close.svg'
@@ -64,7 +64,9 @@ const maleIcons = {
         'Куртка': jacketMale,
     },
     legs: {
-        'Шорты': shortsMale
+        'Шорты': shortsMale,
+        'Брюки': autumnTrousersMale,
+        'Штаны': winterTrousersMale,
     },
     feet: {
         'Кроссовки': sneakersMale,
@@ -82,6 +84,9 @@ const femaleIcons = {
     },
     body: {
         'Топ': top,
+        'Куртка': winterCoatFemale,
+        'Пальто': coatFemale,
+        'Свитер': sweater
     },
     legs: {
         'Шорты': shortsFemale,
@@ -91,7 +96,7 @@ const femaleIcons = {
     },
     feet: {
         'Тапочки': slippersFemale,
-        'Кроссовки': sneakersFemale,
+        'Кеды': sneakersFemale,
         'Ботинки': autumnBootsFemale,
         'Утепленные ботинки': winterBootsFemale,
     }
@@ -102,7 +107,10 @@ export const Modal = ({ isOpen, onClose, clothes }) => {
     const onWrapperClick = (event) => {
         if (event.target.classList.contains("modal-wrapper")) onClose()
     }
-    console.log(clothes)
+
+    // useEffect(() => {
+    //     console.log('Modal received new clothes:', clothes);
+    // }, [clothes]);
 
     return (
         <>
@@ -119,17 +127,17 @@ export const Modal = ({ isOpen, onClose, clothes }) => {
                                     <div className="B"><img src={male} alt="" className='gender'/></div>
                                     <div className="C"><img src={female} alt="" className='gender'/></div>
                                     <div className="C"><img src={iconhead} alt="" className='bodyPart'/></div>
-                                    <div className="C"><img src={maleIcons.head[clothes.male.head[0]]} alt=""/></div>
-                                    <div className="D"><img src={femaleIcons.head[clothes.female.head[0]]} alt="" /></div>
+                                    <div className="C"><img src={maleIcons.head[clothes.male.head.slice(-1)[0]]} alt=""/></div>
+                                    <div className="D"><img src={femaleIcons.head[clothes.female.head.slice(-1)[0]]} alt="" /></div>
                                     <div className="D"><img src={icontorso} alt="" className='bodyPart' /></div>
-                                    <div className="D"><img src={maleIcons.body[clothes.male.body[0]]} alt="" /></div>
-                                    <div className="D"><img src={femaleIcons.body[clothes.female.body[0]]} alt="" /></div>
+                                    <div className="D"><img src={maleIcons.body[clothes.male.body.slice(-1)[0]]} alt="" /></div>
+                                    <div className="D"><img src={femaleIcons.body[clothes.female.body.slice(-1)[0]]} alt="" /></div>
                                     <div className="E"><img src={iconlegs} alt="" className='bodyPart' /></div>
-                                    <div className="E"><img src={maleIcons.legs[clothes.male.legs[0]]} alt="" /></div>
-                                    <div className="D"><img src={femaleIcons.legs[clothes.female.legs[0]]} alt="" /></div>
+                                    <div className="E"><img src={maleIcons.legs[clothes.male.legs.slice(-1)[0]]} alt="" /></div>
+                                    <div className="D"><img src={femaleIcons.legs[clothes.female.legs.slice(-1)[0]]} alt="" /></div>
                                     <div className="E"><img src={iconfeet} alt="" className='bodyPart'/></div>
-                                    <div className="E"><img src={maleIcons.feet[clothes.male.feet[0]]} alt="" /></div>
-                                    <div className="D"><img src={femaleIcons.feet[clothes.female.feet[0]]} alt="" /></div>
+                                    <div className="E"><img src={maleIcons.feet[clothes.male.feet.slice(-1)[0]]} alt="" /></div>
+                                    <div className="D"><img src={femaleIcons.feet[clothes.female.feet.slice(-1)[0]]} alt="" /></div>
                                 </div>
                             </div>
                         </div>
