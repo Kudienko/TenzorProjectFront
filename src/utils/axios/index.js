@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const instanceLogin = axios.create({
   baseURL: "https://tensor-project-backend.onrender.com",
-  timeout: 1000,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
