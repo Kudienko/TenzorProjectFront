@@ -46,7 +46,7 @@ function LoginPage() {
       };
       console.log(userData);
       dispatch(loginUser(userData));
-      navigate("/");
+      // navigate("/");
     }
   }
 
