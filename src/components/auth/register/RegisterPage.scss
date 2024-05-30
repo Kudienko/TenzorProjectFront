@@ -103,3 +103,48 @@ video {
 input:focus {
   outline: none;
 }
+
+@media (max-width: 400px) {
+  .register-container {
+      width: 350px;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 18px;
+  }
+
+  .title {
+    font-size: 25px;
+    margin-top: 20px;
+  }
+
+  .instructions {
+      font-size: 15px;
+      margin-top: 15px;
+  }
+
+  .input-group {
+      margin-top: 25px;
+  }
+
+  .register-container input {
+      width: 95%;
+      height: 40px;
+      padding: 5px;
+      font-size: 12px;
+  }
+
+  .register-button {
+      width: 140px;
+      height: 40px;
+      font-size: 14px;
+  }
+
+  .login-prompt {
+      font-size: 12px;
+      margin-top: 15px;
+  }
+
+  .error-message {
+      font-size: 10px;
+  }
+}
