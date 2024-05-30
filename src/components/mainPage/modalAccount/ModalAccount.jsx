@@ -23,6 +23,7 @@ export const ModalAcc = ({ isOpen, onClose }) => {
                                     <h2 className="modal-title">Аккаунт</h2>
                                     <p className="user-name">Имя: </p>
                                     <p className="mail-name">Почта: </p>
+                                    <p className="city-name">Город: </p>
                                     <p className="gender-name">Выберете пол </p>
                                     <div class="radio-inputs">
                                         <label class="radio">
