@@ -108,10 +108,6 @@ export const Modal = ({ isOpen, onClose, clothes }) => {
         if (event.target.classList.contains("modal-wrapper")) onClose()
     }
 
-    // useEffect(() => {
-    //     console.log('Modal received new clothes:', clothes);
-    // }, [clothes]);
-
     return (
         <>
             <Transition in={isOpen} timeout={350} unmountOnExit={true}>

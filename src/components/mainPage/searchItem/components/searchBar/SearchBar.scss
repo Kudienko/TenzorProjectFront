@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+
+
 .input_wrapper {
     font-family: 'Roboto', sans-serif;
     width: 53.125em;
@@ -43,3 +45,10 @@
         outline: none;
     }
 }
+
+@media (max-width: 400px) {
+    .input_wrapper {
+        width: 80vw;
+    }
+}
+

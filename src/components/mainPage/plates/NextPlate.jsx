@@ -30,11 +30,13 @@ function NextPlate({ data, onDateClick, selectedDate }) {
 
     return (
         <div className="next_days_wrapper">
-            {data.map((item) => (
+            {data.map((item, index) => (
                 <div
                     key={item.date}
                     className={`next_info ${selectedDate === item.date ? 'highlight' : ''}`}
-                    onClick={() => onDateClick(item.date, item.weather)}>
+                    onClick={() => onDateClick(item.date, item.weather)}
+                    style={{ animationDelay: `${index * 0.1}s` }} // Задержка для каждого блока
+                >
                     <SvgItem weather={item.weather}/>
                     <div className="info_text">
                         <h2 className="next_info_date">

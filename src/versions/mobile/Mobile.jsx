@@ -1,38 +1,17 @@
-import React, { useEffect, useState } from "react";
-import "./MainPage.scss";
-import SearchItem from "./searchItem/SearchItem";
-import CurrentPlate from "./plates/CurrentPlate";
-import NextPlate from "./plates/NextPlate";
-import { Modal } from './modal/Modal';
-import { ModalAcc } from './modalAccount/ModalAccount';
-import { useDispatch } from "react-redux";
-import { getWeatherThunk } from "../../store/thunks/getWeatherThunk/getWeatherThunk";
-import cloudyVideo from '../../assets/weather/cloudly.mp4';
-import sunnyVideo from '../../assets/weather/sunny.mp4';
-import rainVideo from '../../assets/weather/rain.mp4';
-import snowyVideo from '../../assets/weather/snowy.mp4';
-import windyVideo from '../../assets/weather/windy.mp4';
-import stormVideo from '../../assets/weather/storm.mp4';
-import { ReactComponent as AccIcon } from '../../assets/acc.svg';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {Loader} from "./loader/Loader";
-import {BrowserView, isBrowser, MobileView,} from 'react-device-detect';
-import Mobile from "../../versions/mobile/Mobile";
+import React, {useEffect, useState} from 'react';
+import "./Mobile.scss";
+import {useDispatch} from "react-redux";
+import {getWeatherThunk} from "../../store/thunks/getWeatherThunk/getWeatherThunk";
+import {toast} from "react-toastify";
+import SearchItem from "../../components/mainPage/searchItem/SearchItem";
+import {ReactComponent as AccIcon} from '../../assets/acc.svg';
+import {Modal} from "../../components/mainPage/modal/Modal";
+import {ModalAcc} from "../../components/mainPage/modalAccount/ModalAccount";
+import NextPlate from "../../components/mainPage/plates/NextPlate";
+import CurrentPlate from "../../components/mainPage/plates/CurrentPlate";
+import {Loader} from "../../components/mainPage/loader/Loader";
 
-function MainPage() {
-    const weatherToVideoMap = {
-        'облачно с прояснениями': cloudyVideo,
-        'переменная облачность': cloudyVideo,
-        'небольшая облачность': cloudyVideo,
-        'ясно': sunnyVideo,
-        'дождь': rainVideo,
-        'небольшой дождь': rainVideo,
-        'снежно': snowyVideo,
-        'пасмурно': cloudyVideo,
-        'ветренно': windyVideo,
-        'гроза': stormVideo
-    };
+const Mobile = () => {
 
     const initialStateClothes = {
         female: {
@@ -58,18 +37,17 @@ function MainPage() {
     const [clothes, setClothes] = useState(initialStateClothes);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [currentVideo, setCurrentVideo] = useState(sunnyVideo);
     const [nextVideo, setNextVideo] = useState(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     useEffect(() => {
         const fetchWeatherData = async () => {
             setIsLoading(true);
             try {
 
-                await delay(2000);
+                // await delay(2000);
                 const weather = await dispatch(getWeatherThunk({
                     lat: 55.751244,
                     lon: 37.618423,
@@ -78,7 +56,6 @@ function MainPage() {
                 if (weather && weather.payload && weather.payload.data) {
                     setWeatherData(weather.payload.data);
                     setSelectedDate(weather.payload.data[0]?.date); // Используйте optional chaining
-                    setNextVideo(weatherToVideoMap[weather.payload.data[0]?.weather] || sunnyVideo); // Использовать солнечное видео по умолчанию
                 } else {
                     throw new Error('Invalid data format');
                 }
@@ -94,11 +71,6 @@ function MainPage() {
 
     const handleDateClick = (date, weather) => {
         setSelectedDate(date);
-        const newVideo = weatherToVideoMap[weather] || sunnyVideo;
-        if (newVideo !== currentVideo) {
-            setNextVideo(newVideo);
-            setIsTransitioning(true);
-        }
     };
 
     const handleCityChange = async (cityName, lat, lon) => {
@@ -106,13 +78,12 @@ function MainPage() {
         setCity(cityName);
         try {
 
-            await delay(2000);
-            const weather = await dispatch(getWeatherThunk({ lat, lon }));
+            // await delay(2000);
+            const weather = await dispatch(getWeatherThunk({lat, lon}));
 
             if (weather && weather.payload && weather.payload.data) {
                 setWeatherData(weather.payload.data);
                 setSelectedDate(weather.payload.data[0]?.date);
-                setNextVideo(weatherToVideoMap[weather.payload.data[0]?.weather] || sunnyVideo); // Использовать солнечное видео по умолчанию
             } else {
                 throw new Error('Invalid data format');
             }
@@ -129,7 +100,6 @@ function MainPage() {
     useEffect(() => {
         if (isTransitioning) {
             const timeoutId = setTimeout(() => {
-                setCurrentVideo(nextVideo);
                 setNextVideo(null);
                 setIsTransitioning(false);
             }, 3000);
@@ -139,10 +109,7 @@ function MainPage() {
     }, [isTransitioning, nextVideo]);
 
     return (
-        <>
-        <BrowserView>
-        <div className="wrapper">
-
+        <div className="wrapper-mobile">
             <Modal
                 isOpen={modalInfoIsOpen}
                 onClose={() => setmodalInfoIsOpen(false)}
@@ -154,44 +121,20 @@ function MainPage() {
                 onClose={() => setModalAccIsOpen(false)}
             />
 
-            <video
-                key={currentVideo}
-                autoPlay
-                loop
-                muted
-                className={`background-video ${isTransitioning ? 'fade-out' : 'fade-in'}`}
-            >
-                <source src={currentVideo} type="video/mp4"/>
-            </video>
-
-            {nextVideo && (
-                <video key={nextVideo}
-                       autoPlay
-                       loop
-                       muted
-                       className={`background-video ${isTransitioning ? 'fade-in' : 'fade-out'}`}
-                       onCanPlay={() => setTimeout(() => {
-                           setCurrentVideo(nextVideo);
-                           setNextVideo(null);
-                           setIsTransitioning(false);
-                       }, 500)}
-                >
-                    <source src={nextVideo} type="video/mp4"/>
-                </video>
-            )}
-            <div className="content">
-                <header className="header">
-                    <div className="city-container">
-                        <div className="city">{city}</div>
+            <div className="content-mobile">
+                <header className="header-mobile">
+                    <div className="city-container-mobile">
+                        <div className="city-mobile">{city}</div>
+                        <div className="button_account">
+                            <button className="round_button2" onClick={() => setModalAccIsOpen(true)}>
+                                <AccIcon/>
+                            </button>
+                        </div>
                     </div>
                     <SearchItem setCity={setCity} handleCityChange={handleCityChange}/>
-                    <div className="button_account">
-                        <button className="round_button2" onClick={() => setModalAccIsOpen(true)}>
-                            <AccIcon/>
-                        </button>
-                    </div>
+
                 </header>
-                <div className="main_wrapper">
+                <div className="main-wrapper-mobile">
                     {weatherData.length > 0 ? <NextPlate data={weatherData} onDateClick={handleDateClick}
                                                          selectedDate={selectedDate}/> :
                         <div className="next_info_no_data">
@@ -204,14 +147,8 @@ function MainPage() {
                         </div>}
                 </div>
             </div>
-            <ToastContainer/>
         </div>
-        </BrowserView>
-        <MobileView>
-            <Mobile/>
-        </MobileView>
-        </>
     );
-}
+};
 
-export default MainPage;
+export default Mobile;

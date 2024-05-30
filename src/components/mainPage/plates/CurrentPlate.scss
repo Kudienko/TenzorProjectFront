@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .current_day_wrapper {
     overflow: auto;
     -ms-overflow-style: none;
@@ -37,7 +48,15 @@
     backdrop-filter: blur(20px);
     background: linear-gradient(180deg, rgba(52, 114, 170, 0.16) 0%, rgba(52, 114, 170, 0.1) 100%);
     margin-bottom: 1.25em;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.5s forwards;
 }
+
+.block-show {
+    opacity: 1;
+}
+
 
 .info_titles,
 .info_values {
@@ -79,4 +98,12 @@
     color: #4287C7;
     font-weight: bold;
     padding: 5px;
+}
+
+
+@media (max-width: 400px) {
+    .current_day_wrapper {
+        width: 20.5em;
+        height: 20vh;
+    }
 }

@@ -1,0 +1,80 @@
+%customFunction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 400px) {
+  body {
+    background-image: url("../../assets/weather/fon.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+  }
+}
+
+
+.wrapper-mobile {
+  width: 100%;
+  height: 100%;
+
+}
+
+.content-mobile {
+  position: absolute;
+
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.header-mobile {
+  @extend %customFunction;
+  width: 100vw;
+  height: 5em;
+  position: relative;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 25%;
+
+  .city-mobile {
+    margin-bottom: 10pt;
+    color: rgba(52, 114, 170, 1);
+    height: 2.95em;
+    width: 8.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    backdrop-filter: blur(4px);
+    font-size: 1.25rem;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+    /* Внутренняя тень */
+    box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+    border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+    border-image-slice: 1;
+    border-radius: 30px;
+  }
+
+  .city-container-mobile{
+    display: flex;
+  }
+}
+
+.main-wrapper-mobile {
+  display: flex;
+  margin-top: 2em;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  //background-color: rgba(52, 114, 170, 1);
+  width: 90vw;
+  height: 70vh;
+}

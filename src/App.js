@@ -4,7 +4,7 @@ import PrivateRoute from "./utils/router/PrivateRoute";
 import MainPage from "./components/mainPage/MainPage";
 import Pipa from "./Pipa";
 import ListItem from './components/mainPage/listItem/ListItem'
-import SearchItem from "./components/mainPage/searchItem/SearchItem";
+import {Loader} from "./components/mainPage/loader/Loader";
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<MainPage />} />
         </Route>
-        <Route path='/kik' element={<SearchItem />} />
+        <Route path='/kik' element={<Loader />} />
         <Route path='/list' element={<ListItem />} />
         <Route path="/pipa" element={<Pipa />} />
         <Route path="login" element={<AuthRootComponent />} />

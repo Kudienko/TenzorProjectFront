@@ -62,6 +62,23 @@
   grid-template-columns: 0.70fr 0.75fr;
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main_wrapper .current_info {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideIn 0.5s forwards;
+}
+
 video {
   -o-object-fit: cover;
   object-fit: cover;
@@ -70,6 +87,15 @@ video {
   height: 100%;
   top: 0;
   left: 0;
+  transition: opacity 3s ease-in-out;
+}
+
+.background-video.fade-in {
+  opacity: 1;
+}
+
+.background-video.fade-out {
+  opacity: 0;
 }
 
 .weather_icon {
@@ -84,7 +110,7 @@ video {
   scrollbar-width: none;
 
   width: 22.5em;
-  height: 37.875em;
+  height: 30.875em;
   margin: 1.25em;
   text-align: center;
   justify-content: center;
@@ -114,7 +140,7 @@ video {
   -ms-overflow-style: none;
   scrollbar-width: none;
   width: 55em;
-  height: 37.875em;
+  height: 30.875em;
   margin: 1.25em;
   text-align: center;
   justify-content: center;
