@@ -1,9 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+.loading {
+    width: 36.875em;
+    height: 50vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    border-radius: 30px;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    backdrop-filter: blur(4px);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+    box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+    border-width: 15px;
+    border-image: linear-gradient(25deg, rgba(255, 255, 255, 0.30) 5%, #c0c9d3 48%, rgba(255, 255, 255, 0.30) 85%);
+    border-image-slice: 1;
+    clip-path: inset(0 round 10px); // обрезает элемент по границам, сохраняя скругление
+}
 
 .login-container {
     width: 36.875em;
-    height: 100%;
+    height: 50vh;
     margin: auto;
     text-align: center;
     padding: 20px;

@@ -102,27 +102,6 @@
     }
 }
 
-/* open */
-.modal--entering,
-.modal--entered {
-    opacity: 1;
-}
-
-.modal--entering .acc-content,
-.modal--entered .acc-content {
-    transform: translateY(0);
-}
-
-/* close */
-.modal--exiting,
-.modal--exited {
-    opacity: 0;
-}
-
-.modal--exiting .acc-content,
-.modal--exited .acc-content {
-    transform: translateY(-50px);
-}
 
 /* name titles*/
 
@@ -150,6 +129,7 @@
     padding: 0.25rem;
     width: 300px;
     font-size: 14px;
+    margin-left: 20px;
 }
 
 .radio-inputs .radio {
@@ -178,6 +158,34 @@
     color: rgba(51, 65, 85, 1);
     font-weight: 600;
     font-size: 14px;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* open */
+.modal--entering,
+.modal--entered {
+    opacity: 1;
+}
+
+.modal--entering .acc-content,
+.modal--entered .acc-content {
+    transform: translateY(0);
+}
+
+/* close */
+.modal--exiting,
+.modal--exited {
+    opacity: 0;
+}
+
+.modal--exiting .acc-content,
+.modal--exited .acc-content {
+    transform: translateY(-50px);
 }
 
 /* Мобильная версия  */

@@ -19,6 +19,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Loader} from "./loader/Loader";
 import {BrowserView, MobileView,} from 'react-device-detect';
 import Mobile from "../../versions/mobile/Mobile";
+import {getCookie} from "../../utils/cookieUtils";
+import {useNavigate} from "react-router-dom";
 
 function MainPage() {
     const weatherToVideoMap = {
@@ -29,6 +31,7 @@ function MainPage() {
         'дождь': rainVideo,
         'небольшой дождь': rainVideo,
         'снежно': snowyVideo,
+        'небольшой снег': snowyVideo,
         'пасмурно': cloudyVideo,
         'ветренно': windyVideo,
         'гроза': stormVideo
@@ -61,6 +64,7 @@ function MainPage() {
     const [currentVideo, setCurrentVideo] = useState(sunnyVideo);
     const [nextVideo, setNextVideo] = useState(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const navigate = useNavigate();
 
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -69,7 +73,7 @@ function MainPage() {
             setIsLoading(true);
             try {
 
-                await delay(5000);
+                // await delay(5000);
                 const weather = await dispatch(getWeatherThunk({
                     lat: 55.751244,
                     lon: 37.618423,
@@ -106,7 +110,7 @@ function MainPage() {
         setCity(cityName);
         try {
 
-            await delay(5000);
+            // await delay(5000);
             const weather = await dispatch(getWeatherThunk({ lat, lon }));
 
             if (weather && weather.payload && weather.payload.data) {
@@ -138,6 +142,15 @@ function MainPage() {
         }
     }, [isTransitioning, nextVideo]);
 
+    const accHandler = () => {
+        if (getCookie("weather_access_token")) {
+            setModalAccIsOpen(true);
+        } else {
+            navigate("/login")
+        }
+
+    }
+
     return (
         <>
         <BrowserView>
@@ -145,12 +158,14 @@ function MainPage() {
 
             <Modal
                 isOpen={modalInfoIsOpen}
+
                 onClose={() => setmodalInfoIsOpen(false)}
                 clothes={clothes}
             />
 
             <ModalAcc
                 isOpen={modalAccIsOpen}
+                setOpen={setModalAccIsOpen}
                 onClose={() => setModalAccIsOpen(false)}
             />
 
@@ -186,7 +201,7 @@ function MainPage() {
                     </div>
                     <SearchItem setCity={setCity} handleCityChange={handleCityChange}/>
                     <div className="button_account">
-                        <button className="round_button2" onClick={() => setModalAccIsOpen(true)}>
+                        <button className="round_button2" onClick={accHandler}>
                             <AccIcon/>
                         </button>
                     </div>

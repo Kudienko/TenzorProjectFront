@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import "./NextPlate.scss";
 import SvgItem from "../svgItem/SvgItem";
 import {useTransitionCarousel} from "react-spring-carousel";
@@ -6,6 +6,12 @@ import {BrowserView, isMobile, MobileView} from "react-device-detect";
 import arrow from '../../../assets/arrow.png'
 
 function NextPlate({data, onDateClick, selectedDate}) {
+
+    const [animationKey, setAnimationKey] = useState(0); // State для ключа анимации
+    // Обновление ключа анимации при изменении props data
+    useEffect(() => {
+        setAnimationKey(prevKey => prevKey + 1);
+    }, [data]);
 
     function formatDate(dateString) {
         const months = [
@@ -60,9 +66,8 @@ function NextPlate({data, onDateClick, selectedDate}) {
             ),
         })),
     });
-
     return (
-        <div className="next_days_wrapper">
+        <div className="next_days_wrapper" key={animationKey}>
             <BrowserView>
                 {data.map((item, index) => (
                     <div

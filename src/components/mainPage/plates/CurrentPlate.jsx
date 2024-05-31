@@ -44,7 +44,6 @@ function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
         }));
         setmodalInfoIsOpen(true);
     }
-    console.log(data)
 
     return (
         <>

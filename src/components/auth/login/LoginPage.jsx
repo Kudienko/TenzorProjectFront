@@ -8,6 +8,10 @@ import {getUserDataThunk} from "../../../store/thunks/getUserDataThunk/getUserDa
 import {useState} from "react";
 import {validateEmail, validatePassword} from './LoginValidation';
 import {BrowserView} from 'react-device-detect';
+import {setCookie} from '../../../utils/cookieUtils';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {Loader} from "../../mainPage/loader/Loader";
 
 
 function LoginPage() {
@@ -16,6 +20,7 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -47,9 +52,25 @@ function LoginPage() {
                 password: password,
             };
             console.log(userData);
-            await dispatch(loginUser(userData));
-            await dispatch(getUserDataThunk());
-            // navigate("/");
+            try {
+                setIsLoading(true);
+                const login = await dispatch(loginUser(userData));
+                console.log(login.payload.access_token);
+                setCookie("weather_access_token", login.payload.access_token, 1, true, 'Strict')
+                const data = await dispatch(getUserDataThunk());
+                if (login.meta.requestStatus === 'rejected' && data.meta.requestStatus === 'rejected') {
+                    toast.error("Такого пользователя не существует");
+                    console.log('пользователя нет')
+                } else {
+                    navigate("/");
+                }
+            } catch (e) {
+                console.log('пользователя нет')
+            } finally {
+                setIsLoading(false);
+            }
+
+
         }
     }
 
@@ -64,42 +85,48 @@ function LoginPage() {
                     <source src={videoBg} type="video/mp4"/>
                 </video>
             </BrowserView>
-            <div className="login-container">
-                <h2 className="title">Авторизация</h2>
-                <p className="instructions">Введите ваш логин и пароль</p>
+            {isLoading ? (<div className="loading">
+                <div className="no_data_text"><Loader/></div>
+            </div>) : (
+                <div className="login-container">
+                    <h2 className="title">Авторизация</h2>
+                    <p className="instructions">Введите ваш логин и пароль</p>
 
-                <form onSubmit={handleChange}>
-                    <div className="input-group">
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Введите ваш e-mail"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        {emailError && <p className="error-message">{emailError}</p>}
-                    </div>
+                    <form onSubmit={handleChange}>
+                        <div className="input-group">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Введите ваш e-mail"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            {emailError && <p className="error-message">{emailError}</p>}
+                        </div>
 
-                    <div className="input-group">
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Введите ваш пароль"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        {passwordError && <p className="error-message">{passwordError}</p>}
-                    </div>
+                        <div className="input-group">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Введите ваш пароль"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            {passwordError && <p className="error-message">{passwordError}</p>}
+                        </div>
 
-                    <button type="submit" className="login-button">Войти</button>
-                </form>
+                        <button type="submit" className="login-button">Войти</button>
+                    </form>
 
-                <p className="register-prompt">
-                    У вас нет аккаунта?<span className="inciting-text" onClick={moveToLogin}> Зарегистрируйтесь!</span>
-                </p>
-            </div>
+                    <p className="register-prompt">
+                        У вас нет аккаунта?<span className="inciting-text"
+                                                 onClick={moveToLogin}> Зарегистрируйтесь!</span>
+                    </p>
+                </div>
+            )}
+            <ToastContainer/>
         </div>
     );
 }

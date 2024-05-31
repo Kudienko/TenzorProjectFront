@@ -5,23 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import { selectToken } from "./store/slice/login/loginSlice";
-import { instanceGetUserData } from "./utils/axios";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-instanceGetUserData.interceptors.request.use((config) => {
-  const state = store.getState();
-  const token = selectToken(state);
-
-  if(token)
-    config.headers.Authorization = `Bearer ${token}`;
-
-  return config;
-}, (error) =>{
-  Promise.reject(error);
-})
 
 root.render(
   <React.StrictMode>
