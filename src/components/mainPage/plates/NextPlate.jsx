@@ -1,8 +1,11 @@
-import React from "react";
+import React, {Fragment} from "react";
 import "./NextPlate.scss";
 import SvgItem from "../svgItem/SvgItem";
+import {useTransitionCarousel} from "react-spring-carousel";
+import {BrowserView, isMobile, MobileView} from "react-device-detect";
+import arrow from '../../../assets/arrow.png'
 
-function NextPlate({ data, onDateClick, selectedDate }) {
+function NextPlate({data, onDateClick, selectedDate}) {
 
     function formatDate(dateString) {
         const months = [
@@ -26,17 +29,21 @@ function NextPlate({ data, onDateClick, selectedDate }) {
         return `${dayOfMonth} ${monthName}`;
     }
 
-    // console.log(weather, "weather data");
-
-    return (
-        <div className="next_days_wrapper">
-            {data.map((item, index) => (
+    const {
+        carouselFragment,
+    } = useTransitionCarousel({
+        items: data.map((item, index) => ({
+            id: item,
+            renderItem: (
                 <div
                     key={item.date}
                     className={`next_info ${selectedDate === item.date ? 'highlight' : ''}`}
                     onClick={() => onDateClick(item.date, item.weather)}
-                    style={{ animationDelay: `${index * 0.1}s` }} // Задержка для каждого блока
+                    style={{animationDelay: `${index * 0.2}s`}} // Задержка для каждого блока
                 >
+                    <div className="arrow-left">
+                            <img src={arrow} alt="arrow" className="arrow-icon"/>
+                    </div>
                     <SvgItem weather={item.weather}/>
                     <div className="info_text">
                         <h2 className="next_info_date">
@@ -46,8 +53,37 @@ function NextPlate({ data, onDateClick, selectedDate }) {
                             {String(item.temp_min).includes("-") ? item.temp_min : "+" + item.temp_min}
                         </p>
                     </div>
+                    <div className="arrow-right">
+                        <img src={arrow} alt="arrow" className="arrow-icon"/>
+                    </div>
                 </div>
-            ))}
+            ),
+        })),
+    });
+
+    return (
+        <div className="next_days_wrapper">
+            <BrowserView>
+                {data.map((item, index) => (
+                    <div
+                        key={item.date}
+                        className={`next_info ${selectedDate === item.date ? 'highlight' : ''}`}
+                        onClick={() => onDateClick(item.date, item.weather)}
+                        style={{animationDelay: `${index * 0.5}s`}} // Задержка для каждого блока
+                    >
+                        <SvgItem weather={item.weather}/>
+                        <div className="info_text">
+                            <h2 className="next_info_date">
+                                {formatDate(item.date)}
+                            </h2>
+                            <p className="next_temp">
+                                {String(item.temp_min).includes("-") ? item.temp_min : "+" + item.temp_min}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </BrowserView>
+            {isMobile && carouselFragment}
         </div>
     );
 }

@@ -50,7 +50,7 @@
     margin-bottom: 1.25em;
     opacity: 0;
     transform: translateY(-20px);
-    animation: slideIn 0.5s forwards;
+    animation: slideIn 1s forwards;
 }
 
 .block-show {
@@ -88,8 +88,10 @@
     border: none;
 }
 
+
+
 .current_temp {
-    margin-top: 20px;
+    margin-top: 2pt;
     font-size: 24px;
 }
 
@@ -104,6 +106,40 @@
 @media (max-width: 400px) {
     .current_day_wrapper {
         width: 20.5em;
-        height: 20vh;
+        height: 40vh;
+    }
+
+    .current_info {
+        width: 18.75em;
+        height: 7em;
+    }
+
+    .info_titles {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .info_section {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .current_temp {
+        color: #4287C7;
+        margin-left: 20px;
+    }
+
+    .button_section {
+        position: absolute;
+        margin-top: 50px;
+        margin-left: 250px;
+    }
+}
+
+@media (min-height: 1100px) {
+    .current_day_wrapper {
+        height: 37.875em;
     }
 }

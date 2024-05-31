@@ -84,6 +84,7 @@
         width: 60px;
     }
 
+
 }
 
 /* open */
@@ -111,17 +112,32 @@
     transform: translateY(-50px);
 }
 
-@media only screen and (max-width: 390px) and (max-height: 844px) {
+@media only screen and (max-width: 400px) {
     .modal {
 
-        //background-color: rgba(0, 0, 0, 0.3);
-        background-color: rgb(0, 0, 0);
+        background-color: #4cd964;
     }
     .modal-wrapper {
         background-color: rgba(0, 0, 0, 0.3);
     }
 
     .modal-content {
-        background-color: #4cd964;
+        width: 70%;
+        height: 70%;
+    }
+
+    .modal-close-button {
+        height: 20px;
+        width: 20px;
+    }
+
+    .clothes {
+        height: 50px;
+        width: 50px;
+    }
+
+    .modal-close-button {
+        top: 20px;
+        right: 25px;
     }
 }

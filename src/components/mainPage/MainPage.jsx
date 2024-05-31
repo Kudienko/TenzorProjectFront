@@ -17,7 +17,7 @@ import { ReactComponent as AccIcon } from '../../assets/acc.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Loader} from "./loader/Loader";
-import {BrowserView, isBrowser, MobileView,} from 'react-device-detect';
+import {BrowserView, MobileView,} from 'react-device-detect';
 import Mobile from "../../versions/mobile/Mobile";
 
 function MainPage() {
@@ -69,7 +69,7 @@ function MainPage() {
             setIsLoading(true);
             try {
 
-                await delay(2000);
+                await delay(5000);
                 const weather = await dispatch(getWeatherThunk({
                     lat: 55.751244,
                     lon: 37.618423,
@@ -106,7 +106,7 @@ function MainPage() {
         setCity(cityName);
         try {
 
-            await delay(2000);
+            await delay(5000);
             const weather = await dispatch(getWeatherThunk({ lat, lon }));
 
             if (weather && weather.payload && weather.payload.data) {

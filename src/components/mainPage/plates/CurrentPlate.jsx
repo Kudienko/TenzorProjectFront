@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./CurrentPlate.scss";
 import SvgItem from "../svgItem/SvgItem";
 import {ReactComponent as ClothIcon} from '../../../assets/btn.svg';
+import {BrowserView, isBrowser, MobileView} from "react-device-detect";
 
 function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
 
@@ -52,12 +53,13 @@ function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
                     weatherArrayCopy && Object.keys(weatherArrayCopy).map((id) => (
                         <div className="current_info"
                              key={id}
-                             style={{animationDelay: `${id * 0.2}s`}} // Задержка для каждого блока
+                             style={{animationDelay: `${id * 0.5}s`}} // Задержка для каждого блока
                         >
+
                             <div className="info_titles">
                                 <div className="info_section">
                                     <h2 className="current_info_title">{weatherArrayCopy[id].period}</h2>
-                                    <SvgItem weather={weatherArrayCopy[id].weather}/>
+                                    <BrowserView><SvgItem weather={weatherArrayCopy[id].weather}/></BrowserView>
                                     <p className="current_temp">
                                         {String(weatherArrayCopy[id].temp_min).includes("-") ? weatherArrayCopy[id].temp_min : "+" + weatherArrayCopy[id].temp_min}
                                         ...

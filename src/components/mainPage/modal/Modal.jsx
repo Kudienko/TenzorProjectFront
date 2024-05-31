@@ -99,6 +99,7 @@ const femaleIcons = {
         'Кеды': sneakersFemale,
         'Ботинки': autumnBootsFemale,
         'Утепленные ботинки': winterBootsFemale,
+        'Кроссовки': sneakersFemale,
     }
 };
 
@@ -123,17 +124,17 @@ export const Modal = ({ isOpen, onClose, clothes }) => {
                                     <div className="B"><img src={male} alt="" className='gender'/></div>
                                     <div className="C"><img src={female} alt="" className='gender'/></div>
                                     <div className="C"><img src={iconhead} alt="" className='bodyPart'/></div>
-                                    <div className="C"><img src={maleIcons.head[clothes.male.head.slice(-1)[0]]} alt=""/></div>
-                                    <div className="D"><img src={femaleIcons.head[clothes.female.head.slice(-1)[0]]} alt="" /></div>
+                                    <div className="C"><img src={maleIcons.head[clothes.male.head.slice(-1)[0]]} alt="" className="clothes"/></div>
+                                    <div className="D"><img src={femaleIcons.head[clothes.female.head.slice(-1)[0]]} alt="" className="clothes"/></div>
                                     <div className="D"><img src={icontorso} alt="" className='bodyPart' /></div>
-                                    <div className="D"><img src={maleIcons.body[clothes.male.body.slice(-1)[0]]} alt="" /></div>
-                                    <div className="D"><img src={femaleIcons.body[clothes.female.body.slice(-1)[0]]} alt="" /></div>
+                                    <div className="D"><img src={maleIcons.body[clothes.male.body.slice(-1)[0]]} alt="" className="clothes"/></div>
+                                    <div className="D"><img src={femaleIcons.body[clothes.female.body.slice(-1)[0]]} alt="" className="clothes"/></div>
                                     <div className="E"><img src={iconlegs} alt="" className='bodyPart' /></div>
-                                    <div className="E"><img src={maleIcons.legs[clothes.male.legs.slice(-1)[0]]} alt="" /></div>
-                                    <div className="D"><img src={femaleIcons.legs[clothes.female.legs.slice(-1)[0]]} alt="" /></div>
+                                    <div className="E"><img src={maleIcons.legs[clothes.male.legs.slice(-1)[0]]} alt="" className="clothes"/></div>
+                                    <div className="D"><img src={femaleIcons.legs[clothes.female.legs.slice(-1)[0]]} alt="" className="clothes"/></div>
                                     <div className="E"><img src={iconfeet} alt="" className='bodyPart'/></div>
-                                    <div className="E"><img src={maleIcons.feet[clothes.male.feet.slice(-1)[0]]} alt="" /></div>
-                                    <div className="D"><img src={femaleIcons.feet[clothes.female.feet.slice(-1)[0]]} alt="" /></div>
+                                    <div className="E"><img src={maleIcons.feet[clothes.male.feet.slice(-1)[0]]} alt="" className="clothes"/></div>
+                                    <div className="D"><img src={femaleIcons.feet[clothes.female.feet.slice(-1)[0]]} alt="" className="clothes"/></div>
                                 </div>
                             </div>
                         </div>

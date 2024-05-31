@@ -180,5 +180,14 @@ video {
   border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
 }
 
-
+@media (max-width: 400px) {
+  .current_day_wrapper_no_data {
+    width: 20.5em;
+    height: 40vh;
+  }
+  .next_info_no_data {
+    width: 20.5em;
+    height: 40vh;
+  }
+}
 
