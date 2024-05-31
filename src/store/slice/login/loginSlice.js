@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "../../thunks/loginThunk/loginThunk";
 
 const initialState = {
-  user: {},
+  token: null,
 };
 
 const loginSlice = createSlice({
@@ -11,11 +11,11 @@ const loginSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.user = action.payload;
+      state.token = action.payload.access_token;  // доступ к access_token
     });
   },
 });
 
-export const { login } = loginSlice.actions;
+export const selectToken = (state) => state.login.token;
 
 export default loginSlice.reducer;

@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { instanceLogin } from "../../../utils/axios";
+import { instanceGetUserData } from "../../../utils/axios";
 
-export const loginUser = createAsyncThunk(
-  "/login",
+export const getUserDataThunk = createAsyncThunk(
+  "/getUserData",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await instanceLogin.post("/api/auth/login", data);
-      return response.data;  // возвращаем data, чтобы было access_token
+      const response = await instanceGetUserData.get("/api/auth/me");
+      return response.data;  // возвращаем data, чтобы использовать user data
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);

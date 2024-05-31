@@ -4,6 +4,7 @@ import videoBg from '../../../assets/weather/rain.mp4'
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../../store/thunks/loginThunk/loginThunk";
+import {getUserDataThunk} from "../../../store/thunks/getUserDataThunk/getUserDataThunk";
 import {useState} from "react";
 import {validateEmail, validatePassword} from './LoginValidation';
 import {BrowserView} from 'react-device-detect';
@@ -22,7 +23,7 @@ function LoginPage() {
         navigate("/register")
     }
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
         e.preventDefault();
         let valid = true;
 
@@ -46,7 +47,8 @@ function LoginPage() {
                 password: password,
             };
             console.log(userData);
-            dispatch(loginUser(userData));
+            await dispatch(loginUser(userData));
+            await dispatch(getUserDataThunk());
             // navigate("/");
         }
     }
