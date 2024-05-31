@@ -72,6 +72,14 @@
     font-size: 18px;
 }
 
+.mail-name{
+    font-size: 18px;
+}
+
+.city-name {
+    font-size: 18px;
+}
+
 .buttons-container {
     display: flex;
     flex-direction: column;
@@ -124,11 +132,11 @@
 
 .user-name,
 .gender-name,
+.city-name,
 .mail-name {
     color: rgba(51, 65, 85, 1);
     font-weight: 600;
 }
-
 
 /* radio */
 .radio-inputs {
@@ -170,4 +178,26 @@
     color: rgba(51, 65, 85, 1);
     font-weight: 600;
     font-size: 14px;
+}
+
+/* Мобильная версия  */
+
+@media (max-width: 420px) {
+    .acc-content {
+        width: 100%;
+        max-width: 280px;
+        height: 90%;
+    }
+
+    .buttons-container {
+        width: 107%;
+    }
+
+    .radio-inputs {
+        width: 21.5em;
+    }
+
+    .modal-title {
+        font-size: 25px;    
+    }
 }

@@ -108,44 +108,44 @@ input:focus {
 
 /* Мобильная версия  */
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .login-container {
-        width: 350px;
-        padding: 15px;
+        width: 19em;
+        padding: 10px;
         border-radius: 20px;
         font-size: 18px;
     }
 
     .title {
         font-size: 25px;
-        margin-top: 20px;
+        margin-top: 1.25em;
     }
 
     .instructions {
         font-size: 15px;
-        margin-top: 15px;
+        margin-top: 0.938em;
     }
 
     .input-group {
-        margin-top: 25px;
+        margin-top: 1.4em;
     }
 
     .login-container input {
         width: 95%;
-        height: 40px;
+        height: 2.8em;
         padding: 5px;
         font-size: 12px;
     }
 
     .login-button {
-        width: 100px;
-        height: 40px;
+        width: 6.25em;
+        height: 2.65em;
         font-size: 14px;
     }
 
     .register-prompt {
         font-size: 12px;
-        margin-top: 15px;
+        margin-top: 1.5em;
     }
 
     .error-message {

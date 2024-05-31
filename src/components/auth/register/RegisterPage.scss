@@ -104,9 +104,11 @@ input:focus {
   outline: none;
 }
 
-@media (max-width: 400px) {
+/* Мобильная версия  */
+
+@media (max-width: 420px) {
   .register-container {
-      width: 350px;
+      width: 19em;
       padding: 10px;
       border-radius: 20px;
       font-size: 18px;
@@ -114,34 +116,35 @@ input:focus {
 
   .title {
     font-size: 25px;
-    margin-top: 20px;
+    margin-top: 1.25em;
   }
 
   .instructions {
       font-size: 15px;
-      margin-top: 15px;
+      margin-top: 0.938em;
   }
 
   .input-group {
-      margin-top: 25px;
+      margin-top: 1.563em;
+      height: 1.4em;
   }
 
   .register-container input {
       width: 95%;
-      height: 40px;
+      height: 2.8em;
       padding: 5px;
       font-size: 12px;
   }
 
   .register-button {
-      width: 140px;
-      height: 40px;
+      width: 8.8em;
+      height: 2.65em;
       font-size: 14px;
   }
 
   .login-prompt {
       font-size: 12px;
-      margin-top: 15px;
+      margin-top: 1.5em;
   }
 
   .error-message {
