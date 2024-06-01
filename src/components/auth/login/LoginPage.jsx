@@ -56,7 +56,7 @@ function LoginPage() {
                 setIsLoading(true);
                 const login = await dispatch(loginUser(userData));
                 console.log(login.payload.access_token);
-                setCookie("weather_access_token", login.payload.access_token, 1, true, 'Strict')
+                setCookie("weather_access_token", login.payload.access_token, 1, true, 'None')
                 const data = await dispatch(getUserDataThunk());
                 if (login.meta.requestStatus === 'rejected' && data.meta.requestStatus === 'rejected') {
                     toast.error("Такого пользователя не существует");
