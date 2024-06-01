@@ -7,6 +7,7 @@ import { Modal } from './modal/Modal';
 import { ModalAcc } from './modalAccount/ModalAccount';
 import {useDispatch} from "react-redux";
 import { getWeatherThunk } from "../../store/thunks/getWeatherThunk/getWeatherThunk";
+import { loginUser } from "../../store/thunks/getCityThunk/getCityThunk";
 import cloudyVideo from '../../assets/weather/cloudly.mp4';
 import sunnyVideo from '../../assets/weather/sunny.mp4';
 import rainVideo from '../../assets/weather/rain.mp4';
@@ -20,6 +21,7 @@ import {Loader} from "./loader/Loader";
 import {BrowserView, MobileView,} from 'react-device-detect';
 import Mobile from "../../versions/mobile/Mobile";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 function MainPage() {
     const navigate = useNavigate()
@@ -62,7 +64,7 @@ function MainPage() {
     };
 
     const dispatch = useDispatch();
-    const [city, setCity] = useState(user.city ? user.city : "Москва");
+    const [city, setCity] = useState(user ? user.city : "Москва");
     const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
     const [modalAccIsOpen, setModalAccIsOpen] = useState(false);
     const [weatherData, setWeatherData] = useState([]);
@@ -74,36 +76,32 @@ function MainPage() {
     const [nextVideo, setNextVideo] = useState(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
-
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    useEffect(() => {
-        const fetchWeatherData = async () => {
-            setIsLoading(true);
-            try {
+    const fetchWeatherData = async (lat = 55.751244, lon = 37.618423) => {
+        setIsLoading(true);
+        try {
 
-                // await delay(5000);
-                const weather = await dispatch(getWeatherThunk({
-                    lat: 55.751244,
-                    lon: 37.618423,
-                }));
+            // await delay(5000);
+            const weather = await dispatch(getWeatherThunk({
+                lat: lat,
+                lon: lon,
+            }));
 
-                if (weather && weather.payload && weather.payload.data) {
-                    setWeatherData(weather.payload.data);
-                    setSelectedDate(weather.payload.data[0]?.date); // Используйте optional chaining
-                    setNextVideo(weatherToVideoMap[weather.payload.data[0]?.weather] || sunnyVideo); // Использовать солнечное видео по умолчанию
-                } else {
-                    throw new Error('Invalid data format');
-                }
-            } catch (error) {
-                setWeatherData([]);
-                toast.error("Не удалось получить данные с сервера. Попробуйте позже.");
-            } finally {
-                setIsLoading(false); // Окончание загрузки
+            if (weather && weather.payload && weather.payload.data) {
+                setWeatherData(weather.payload.data);
+                setSelectedDate(weather.payload.data[0]?.date); // Используйте optional chaining
+                setNextVideo(weatherToVideoMap[weather.payload.data[0]?.weather] || sunnyVideo); // Использовать солнечное видео по умолчанию
+            } else {
+                throw new Error('Invalid data format');
             }
-        };
-        fetchWeatherData();
-    }, [dispatch]);
+        } catch (error) {
+            setWeatherData([]);
+            toast.error("Не удалось получить данные с сервера. Попробуйте позже.");
+        } finally {
+            setIsLoading(false); // Окончание загрузки
+        }
+    };
 
     const handleDateClick = (date, weather) => {
         setSelectedDate(date);
@@ -117,24 +115,7 @@ function MainPage() {
     const handleCityChange = async (cityName, lat, lon) => {
         setIsLoading(true);
         setCity(cityName);
-        try {
-
-            // await delay(5000);
-            const weather = await dispatch(getWeatherThunk({ lat, lon }));
-
-            if (weather && weather.payload && weather.payload.data) {
-                setWeatherData(weather.payload.data);
-                setSelectedDate(weather.payload.data[0]?.date);
-                setNextVideo(weatherToVideoMap[weather.payload.data[0]?.weather] || sunnyVideo); // Использовать солнечное видео по умолчанию
-            } else {
-                throw new Error('Invalid data format');
-            }
-        } catch (error) {
-            setWeatherData([]);
-            toast.error("Не удалось получить данные с сервера. Попробуйте позже.");
-        } finally {
-            setIsLoading(false); // Окончание загрузки
-        }
+        fetchWeatherData(lat,lon);
     };
 
     const selectedData = weatherData.find((item) => item.date === selectedDate);
@@ -160,6 +141,21 @@ function MainPage() {
             }
     }
 
+    useEffect(() => {
+        if(!city)
+            fetchWeatherData();
+        else{
+            axios.get(`https://tensor-project-backend.onrender.com/api/cities/get_cities?city=${city}`)
+                .then((response) => {
+                    const { lat, lon } = response.data[0];
+                    fetchWeatherData(lat,lon)
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    }, [city]);
+
     return (
         <>
         <BrowserView>
@@ -172,11 +168,18 @@ function MainPage() {
                 clothes={clothes}
             />
 
-            <ModalAcc
-                isOpen={modalAccIsOpen}
-                setOpen={setModalAccIsOpen}
-                onClose={() => setModalAccIsOpen(false)}
-            />
+            {
+                user && (
+                <ModalAcc
+                    isOpen={modalAccIsOpen}
+                    setOpen={setModalAccIsOpen}
+                    onClose={() => setModalAccIsOpen(false)}
+                    handleCityChange={handleCityChange}
+                />
+                )
+
+            }
+            
 
             <video
                 key={currentVideo}
