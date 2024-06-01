@@ -9,7 +9,7 @@ import {useDispatch} from "react-redux";
 import { updateUserThunk } from '../../../store/thunks/updateUserThunk/updateUserThunk';
 
 
-export const ModalAcc = ({isOpen, onClose, setOpen}) => {
+export const ModalAcc = ({isOpen, onClose, setOpen, handleCityChange}) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export const ModalAcc = ({isOpen, onClose, setOpen}) => {
     const handleLogout = async () => {
         console.log('вЫЙТИ')
         localStorage.clear()
-        navigate("/login")
+        navigate("/")
     }
     const [selectedGender, setSelectedGender] = useState(user.gender);
     const [selectedCity, setSelectedCity] = useState(user.city);
@@ -67,7 +67,7 @@ export const ModalAcc = ({isOpen, onClose, setOpen}) => {
                                     <p className="user-name">Имя: {user.login} </p>
                                     <p className="mail-name">Почта: {user.email}</p>
                                     <p className="city-name">Город:</p>
-                                    <SearchCity setSelectedCity={setSelectedCity} selectedCity={selectedCity}/>
+                                    <SearchCity setSelectedCity={setSelectedCity} selectedCity={selectedCity} handleCityChange={handleCityChange}/>
                                     <div className="gender">
                                         <p className="gender-name">Пол:</p>
                                         <div className="radio-inputs">

@@ -62,7 +62,8 @@ function LoginPage() {
                 const data = await dispatch(getUserDataThunk());
                 setObject('access_token', login.payload)
                 setObject('user', data.payload)
-                if (login.meta.requestStatus === 'rejected' && data.meta.requestStatus === 'rejected') {
+                console.log(login)
+                if (login.meta.requestStatus === 'rejected' || data.meta.requestStatus === 'rejected') {
                     toast.error("Такого пользователя не существует");
                     console.log('пользователя нет')
                 } else {
