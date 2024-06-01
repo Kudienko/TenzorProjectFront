@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+
+.input_wrapper {
+    font-family: 'Roboto', sans-serif;
+    width: 30em;
+    border-radius: 30px;
+    height: 3.125em;
+    padding: 0.4375em;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    font-size: 15px;
+    /* Размытие фона и градиент */
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
+    /* Внутренняя тень */
+    box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
+    /* Вы можете изменить толщину границы по желанию */
+    border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
+    border-image-slice: 1;
+
+    #search_icon {
+        padding: 5px;
+        width: 2.5vh;
+        height: 2.5vh;
+    }
+
+    input {
+        background-color: transparent;
+        border: none;
+        height: 100%;
+        font-size: 1.25rem;
+        width: 100%;
+        margin-left: 5px;
+        color: rgba(52, 114, 170, 1);
+        font-weight: 500;
+        line-height: 30px;
+        font-size: 20px;
+    } ::placeholder {
+        color: rgba(52, 114, 170, 1);
+    }
+
+    input:focus {
+        outline: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .input_wrapper {
+        width: 80vw;
+    }
+}
+

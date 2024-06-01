@@ -5,7 +5,7 @@ import CurrentPlate from "./plates/CurrentPlate";
 import NextPlate from "./plates/NextPlate";
 import { Modal } from './modal/Modal';
 import { ModalAcc } from './modalAccount/ModalAccount';
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import { getWeatherThunk } from "../../store/thunks/getWeatherThunk/getWeatherThunk";
 import cloudyVideo from '../../assets/weather/cloudly.mp4';
 import sunnyVideo from '../../assets/weather/sunny.mp4';
@@ -19,10 +19,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Loader} from "./loader/Loader";
 import {BrowserView, MobileView,} from 'react-device-detect';
 import Mobile from "../../versions/mobile/Mobile";
-import {getCookie} from "../../utils/cookieUtils";
 import {useNavigate} from "react-router-dom";
 
 function MainPage() {
+    const navigate = useNavigate()
+
+    function getObject(key) {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : null;
+    }
+
+    const user = getObject('user');
+
+
     const weatherToVideoMap = {
         'облачно с прояснениями': cloudyVideo,
         'переменная облачность': cloudyVideo,
@@ -64,7 +73,7 @@ function MainPage() {
     const [currentVideo, setCurrentVideo] = useState(sunnyVideo);
     const [nextVideo, setNextVideo] = useState(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const navigate = useNavigate();
+
 
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -143,12 +152,12 @@ function MainPage() {
     }, [isTransitioning, nextVideo]);
 
     const accHandler = () => {
-        if (getCookie("weather_access_token")) {
-            setModalAccIsOpen(true);
-        } else {
-            navigate("/login")
-        }
 
+            if (!user) {
+                navigate('/login')
+            } else  {
+                setModalAccIsOpen(true);
+            }
     }
 
     return (

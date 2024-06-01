@@ -8,13 +8,13 @@ import {getUserDataThunk} from "../../../store/thunks/getUserDataThunk/getUserDa
 import {useState} from "react";
 import {validateEmail, validatePassword} from './LoginValidation';
 import {BrowserView} from 'react-device-detect';
-import {setCookie} from '../../../utils/cookieUtils';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Loader} from "../../mainPage/loader/Loader";
 
 
 function LoginPage() {
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,6 +26,10 @@ function LoginPage() {
     const navigate = useNavigate();
     const moveToLogin = () => {
         navigate("/register")
+    }
+
+    function setObject(key, obj) {
+        localStorage.setItem(key, JSON.stringify(obj));
     }
 
     const handleChange = async (e) => {
@@ -55,9 +59,9 @@ function LoginPage() {
             try {
                 setIsLoading(true);
                 const login = await dispatch(loginUser(userData));
-                console.log(login.payload.access_token);
-                setCookie("weather_access_token", login.payload.access_token, 1, true, 'Strict')
                 const data = await dispatch(getUserDataThunk());
+                setObject('access_token', login.payload)
+                setObject('user', data.payload)
                 if (login.meta.requestStatus === 'rejected' && data.meta.requestStatus === 'rejected') {
                     toast.error("Такого пользователя не существует");
                     console.log('пользователя нет')

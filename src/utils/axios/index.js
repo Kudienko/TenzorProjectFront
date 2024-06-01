@@ -12,8 +12,7 @@ export const instanceGetUserData = axios.create({
   baseURL: "https://tensor-project-backend.onrender.com",
   headers: {
     "Content-Type": "application/json",
-  },
-  withCredentials: true,
+  }
 });
 
 
