@@ -59,6 +59,11 @@ function LoginPage() {
             try {
                 setIsLoading(true);
                 const login = await dispatch(loginUser(userData));
+<<<<<<< HEAD
+=======
+                console.log(login.payload.access_token);
+                await setCookie("weather_access_token", login.payload.access_token, 1, true, 'None')
+>>>>>>> e303737283ed50d894db33d559a2ea1fb56dc465
                 const data = await dispatch(getUserDataThunk());
                 setObject('access_token', login.payload)
                 setObject('user', data.payload)
