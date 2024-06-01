@@ -62,7 +62,7 @@ function MainPage() {
     };
 
     const dispatch = useDispatch();
-    const [city, setCity] = useState("Москва");
+    const [city, setCity] = useState(user.city ? user.city : "Москва");
     const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
     const [modalAccIsOpen, setModalAccIsOpen] = useState(false);
     const [weatherData, setWeatherData] = useState([]);

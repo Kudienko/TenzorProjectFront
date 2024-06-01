@@ -4,7 +4,8 @@ import './SearchResultCity.scss'
 export const SearchResultCity = ({ result, setSelectedCity}) => {
 
 
-  const onClick = async (result) => {
+  const onClick = (result) => {
+    console.log("City selected:", result.city_name);
     setSelectedCity(result.city_name)
   }
 

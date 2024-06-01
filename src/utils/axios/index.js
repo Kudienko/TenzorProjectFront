@@ -15,7 +15,12 @@ export const instanceGetUserData = axios.create({
   }
 });
 
-
+export const instanceUpdateUserData = axios.create({
+  baseURL: "https://tensor-project-backend.onrender.com",
+  headers: {
+    "Content-Type": "application/json",
+  }
+});
 
 export const instanceRegister = axios.create({
   baseURL: "https://tensor-project-backend.onrender.com",

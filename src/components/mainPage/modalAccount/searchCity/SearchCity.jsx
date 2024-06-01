@@ -7,7 +7,6 @@ import {SearchBarCity} from "./searchBarCity/SearchBarCity";
 function SearchItem({setSelectedCity, selectedCity}) {
     const [results, setResults] = useState([])
     const [open, setOpen] = React.useState(false);
-    const [input, setInput] = useState("")
 
     const handleClickAway = () => {
         setOpen(false);
@@ -19,7 +18,7 @@ function SearchItem({setSelectedCity, selectedCity}) {
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <div className="search_bar_container" onClick={handleClick} value={selectedCity}>
-                <SearchBarCity setResults={setResults} input={input} setInput={setInput}/>
+                <SearchBarCity setResults={setResults} input={selectedCity} setInput={setSelectedCity}/>
                 {
                     open ? (<SearchResultListCity results={results} setSelectedCity={setSelectedCity}/>) : null
                 }
