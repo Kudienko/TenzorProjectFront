@@ -1,15 +1,18 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './ModalAccount.scss'
 import {Transition} from 'react-transition-group'
 import {ReactComponent as IconClose} from '../../../assets/close.svg'
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import SearchCity from "./searchCity/SearchCity";
+import {useDispatch} from "react-redux";
+import { updateUserThunk } from '../../../store/thunks/updateUserThunk/updateUserThunk';
 
 
 export const ModalAcc = ({isOpen, onClose, setOpen}) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const onWrapperClick = (event) => {
         if (event.target.classList.contains("acc-wrapper")) onClose()
@@ -41,7 +44,13 @@ export const ModalAcc = ({isOpen, onClose, setOpen}) => {
     const handleGenderChange = (event) => {
         setSelectedGender(event.target.value);
     };
-    console.log(selectedCity);
+
+    const updateUser = () =>{
+        user.city = selectedCity
+        user.gender = selectedGender
+        localStorage.setItem('user',JSON.stringify(user))
+        dispatch(updateUserThunk(user))
+    }
 
     return (
         <>
@@ -58,7 +67,6 @@ export const ModalAcc = ({isOpen, onClose, setOpen}) => {
                                     <p className="user-name">Имя: {user.login} </p>
                                     <p className="mail-name">Почта: {user.email}</p>
                                     <p className="city-name">Город:</p>
-                                    {/*<input value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}></input>*/}
                                     <SearchCity setSelectedCity={setSelectedCity} selectedCity={selectedCity}/>
                                     <div className="gender">
                                         <p className="gender-name">Пол:</p>
@@ -78,7 +86,7 @@ export const ModalAcc = ({isOpen, onClose, setOpen}) => {
                                         </div>
                                     </div>
                                     <div className="buttons-container">
-                                        <button className="acc-button">Сменить данные пользователя</button>
+                                        <button className="acc-button" onClick={updateUser}>Сменить данные пользователя</button>
                                         <button className="acc-button" onClick={handleLogout}>Выйти из аккаунта</button>
                                     </div>
                                 </div>
