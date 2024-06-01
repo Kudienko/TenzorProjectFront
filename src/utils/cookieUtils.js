@@ -1,11 +1,12 @@
-export async function setCookie(name, value, days, secure = true, sameSite = 'None') {
+export async function setCookie(name, value, days, secure = true, sameSite = 'None', domain='tensor-project-backend.onrender.com') {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = "expires=" + date.toUTCString();
     const secureFlag = secure ? ";secure" : "";
     const sameSiteFlag = sameSite ? `;SameSite=${sameSite}` : "";
+    const domainFlag = domain ? `;domain=${domain}` : "";
 
-    document.cookie = name + "=" + value + ";" + expires + ";path=/" + secureFlag + sameSiteFlag;
+    document.cookie = `${name}=${value};${expires};path=/${secureFlag}${sameSiteFlag}${domainFlag}`;
 }
 
 export function getCookie(name) {
