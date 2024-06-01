@@ -8,7 +8,7 @@ export async function setCookie(name, value, days, secure = true, sameSite = 'No
     document.cookie = name + "=" + value + ";" + expires + ";path=/" + secureFlag + sameSiteFlag;
 }
 
-export async function getCookie(name) {
+export function getCookie(name) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
@@ -19,7 +19,7 @@ export async function getCookie(name) {
     return null;
 }
 
-export async function deleteCookie(name) {
+export function deleteCookie(name) {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
     return document.cookie;
 }
