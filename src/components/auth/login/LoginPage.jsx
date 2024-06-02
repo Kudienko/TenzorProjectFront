@@ -14,8 +14,6 @@ import {Loader} from "../../mainPage/loader/Loader";
 
 
 function LoginPage() {
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -55,22 +53,19 @@ function LoginPage() {
                 email: email,
                 password: password,
             };
-            console.log(userData);
             try {
                 setIsLoading(true);
                 const login = await dispatch(loginUser(userData));
                 const data = await dispatch(getUserDataThunk());
                 setObject('access_token', login.payload)
                 setObject('user', data.payload)
-                console.log(login)
                 if (login.meta.requestStatus === 'rejected' || data.meta.requestStatus === 'rejected') {
                     toast.error("Такого пользователя не существует");
-                    console.log('пользователя нет')
                 } else {
                     navigate("/");
                 }
             } catch (e) {
-                console.log('пользователя нет')
+                toast.error("Неизвестная ошибка");
             } finally {
                 setIsLoading(false);
             }
@@ -90,7 +85,7 @@ function LoginPage() {
                     <source src={videoBg} type="video/mp4"/>
                 </video>
             </BrowserView>
-            {isLoading ? (<div className="loading">
+            {isLoading ? (<div className="loading_login">
                 <div className="no_data_text"><Loader/></div>
             </div>) : (
                 <div className="login-container">

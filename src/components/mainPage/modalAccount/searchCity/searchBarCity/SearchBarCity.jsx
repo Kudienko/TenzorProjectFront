@@ -11,12 +11,8 @@ export const SearchBarCity = ({ setResults, input, setInput }) => {
             const Debounce = setTimeout(() => {
                 axios.get(`https://tensor-project-backend.onrender.com/api/cities/get_cities?city=${input}`)
                     .then((response) => {
-                        console.log(response.data);
                         setResults(response.data)
                     })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
             }, 1000)
             return () => clearTimeout(Debounce)
         }

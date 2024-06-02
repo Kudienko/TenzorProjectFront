@@ -65,11 +65,10 @@ function RegisterPage() {
                 if (kuki.meta.requestStatus === 'rejected') {
                     toast.error("Данный пользователь существует");
                 }
-                console.log(kuki)
-                // navigate("/");
+                toast.success("Регистрация прошла успешно");
+                navigate("/login");
             } catch (e) {
-                console.log('Данный пользователь существует')
-
+                toast.error("Попробуйте позже");
             } finally {
                 setIsLoading(false);
             }
@@ -87,7 +86,7 @@ function RegisterPage() {
                     <source src={videoBg} type="video/mp4"/>
                 </video>
             </BrowserView>
-            {isLoading ? (<div className="loading">
+            {isLoading ? (<div className="loading_register">
                 <div className="no_data_text"><Loader/></div>
             </div>) : (
                 <div className="register-container">
