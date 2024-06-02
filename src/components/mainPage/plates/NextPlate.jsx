@@ -37,6 +37,8 @@ function NextPlate({data, onDateClick, selectedDate}) {
 
     const {
         carouselFragment,
+        slideToPrevItem,
+        slideToNextItem
     } = useTransitionCarousel({
         items: data.map((item, index) => ({
             id: item,
@@ -48,7 +50,8 @@ function NextPlate({data, onDateClick, selectedDate}) {
                     style={{animationDelay: `${index * 0.2}s`}} // Задержка для каждого блока
                 >
                     <div className="arrow-left">
-                            <img src={arrow} alt="arrow" className="arrow-icon"/>
+                        {/*<button onClick={slideToPrevItem}></button>*/}
+
                     </div>
                     <SvgItem weather={item.weather}/>
                     <div className="info_text">
@@ -56,11 +59,14 @@ function NextPlate({data, onDateClick, selectedDate}) {
                             {formatDate(item.date)}
                         </h2>
                         <p className="next_temp">
-                            {String(item.temp_min).includes("-") ? item.temp_min : "+" + item.temp_min}
+                            {String(Math.round((item.temp_max + item.temp_min) / 2)).includes("-") ?
+                                Math.round((item.temp_max + item.temp_min) / 2) :
+                                "+" + Math.round((item.temp_max + item.temp_min) / 2)}
                         </p>
                     </div>
                     <div className="arrow-right">
-                        <img src={arrow} alt="arrow" className="arrow-icon"/>
+                        {/*<button onClick={slideToNextItem}><img src={arrow} alt="arrow" className="arrow-icon"/></button>*/}
+
                     </div>
                 </div>
             ),
@@ -68,6 +74,7 @@ function NextPlate({data, onDateClick, selectedDate}) {
     });
     return (
         <div className="next_days_wrapper" key={animationKey}>
+
             <BrowserView>
                 {data.map((item, index) => (
                     <div
@@ -82,13 +89,22 @@ function NextPlate({data, onDateClick, selectedDate}) {
                                 {formatDate(item.date)}
                             </h2>
                             <p className="next_temp">
-                                {String(item.temp_min).includes("-") ? item.temp_min : "+" + item.temp_min}
+                                {String(item.temp_min).includes("-") ?
+                                    Math.round((item.temp_max + item.temp_min) / 2) :
+                                    "+" + Math.round((item.temp_max + item.temp_min) / 2)}
                             </p>
                         </div>
                     </div>
                 ))}
             </BrowserView>
             {isMobile && carouselFragment}
+            <MobileView>
+                <div className="mobile-container">
+                    <img src={arrow} alt="arrow" className="arrow-left" onClick={slideToPrevItem}/>
+                    {carouselFragment}
+                    <img src={arrow} alt="arrow" className="arrow-icon" onClick={slideToNextItem}/>
+                </div>
+            </MobileView>
         </div>
     );
 }

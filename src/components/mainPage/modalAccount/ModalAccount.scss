@@ -208,4 +208,18 @@
     .modal-title {
         font-size: 25px;    
     }
+
+    .gender {
+        display: flex;
+        flex-direction: column;
+        margin-left: -20px;
+    }
+
+    .gender-name {
+        margin-bottom: 20px;
+    }
+
+    .radio-inputs {
+        width: 100%;
+    }
 }

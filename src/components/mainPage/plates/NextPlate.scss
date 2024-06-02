@@ -89,22 +89,45 @@
     width: 20.5em;
     height: 12vh;
 
+    .next_info {
+      font-size: 15px ;
+      width: 19.3em;
+      padding-right: 1.5em;
+      height: 4em;
+      animation: slideIn 0.2s forwards;
+    }
   }
 
-  .next_info {
-    width: 18em;
-    padding-right: 1.5em;
-    height: 3.5em;
-    animation: slideIn 0.2s forwards;
+  .mobile-container {
+    justify-content: center;
+    align-items: center;
+
+    .arrow-icon {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      margin-top: -4em;
+      margin-left: 6em;
+      z-index: 999;
+    }
+
+    .arrow-left {
+      rotate: 180deg;
+      margin-top: -4em;
+      margin-left: -8em;
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      z-index: 999;
+    }
+
+
   }
 
-  .arrow-icon {
-    width: 50px;
-    height: 50px;
-  }
+}
 
-  .arrow-left {
-    rotate: 180deg;
+@media (min-height: 1100px) {
+  .next_days_wrapper {
+    height: 40em;
   }
-
 }

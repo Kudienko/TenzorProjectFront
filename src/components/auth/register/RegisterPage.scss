@@ -4,6 +4,9 @@
   width: 36.875em;
   height: 70vh;
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-family: 'Roboto', sans-serif;
   padding: 1.875em;
@@ -133,6 +136,10 @@ input:focus {
       padding: 10px;
       border-radius: 20px;
       font-size: 18px;
+  }
+
+  .loading_register {
+    width: 19em;
   }
 
   .title {

@@ -34,19 +34,20 @@ function LoginPage() {
         e.preventDefault();
         let valid = true;
 
+        setPasswordError('');
+        setEmailError('');
+
         if (!validateEmail(email)) {
             setEmailError('Некорректный формат email');
             valid = false;
-        } else {
-            setEmailError('');
         }
 
         if (!validatePassword(password)) {
             setPasswordError('Пароль должен быть не менее 6 символов');
             valid = false;
-        } else {
-            setPasswordError('');
         }
+
+
 
         if (valid) {
             const userData = {
@@ -121,8 +122,7 @@ function LoginPage() {
                     </form>
 
                     <p className="register-prompt">
-                        У вас нет аккаунта?<span className="inciting-text"
-                                                 onClick={moveToLogin}> Зарегистрируйтесь!</span>
+                        У вас нет аккаунта?<span className="inciting-text" onClick={moveToLogin}> Зарегистрируйтесь!</span>
                     </p>
                 </div>
             )}

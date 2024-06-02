@@ -4,11 +4,12 @@ import videoBg from '../../../assets/weather/rain.mp4';
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {registerUser} from "../../../store/thunks/registerThunk/registerThunk";
-import {validateEmail, validateLogin, validatePasswords} from './RegisterValidation'; // Путь может отличаться
+import {validateEmail, validateLenght, validateLogin, validatePasswords} from './RegisterValidation'; // Путь может отличаться
 import {BrowserView} from 'react-device-detect';
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {Loader} from "../../mainPage/loader/Loader";
+import {validatePassword} from "../login/LoginValidation";
 
 
 function RegisterPage() {
@@ -31,26 +32,26 @@ function RegisterPage() {
     const handleRegister = async (e) => {
         e.preventDefault();
         let isValid = true;
+        setPasswordError("")
 
         if (!validateEmail(email)) {
             setEmailError("Email введен некорректно");
             isValid = false;
-        } else {
-            setEmailError('');
         }
 
         if (!validateLogin(login)) {
             setLoginError("Имя пользователя должно быть не менее 4 символов");
             isValid = false;
-        } else {
-            setLoginError('');
         }
 
         if (!validatePasswords(password, repeatPassword)) {
             setPasswordError("Пароли не совпадают");
             isValid = false;
-        } else {
-            setPasswordError('');
+        }
+
+        if (!validateLenght(password)) {
+            setPasswordError('Пароль должен быть не менее 6 символов');
+            isValid = false;
         }
 
         if (isValid) {

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
-
 .input_wrapper {
     font-family: 'Roboto', sans-serif;
     width: 53.125em;
@@ -12,11 +10,8 @@
     align-items: center;
     backdrop-filter: blur(4px);
     font-size: 15px;
-    /* Размытие фона и градиент */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.10) 100%);
-    /* Внутренняя тень */
     box-shadow: inset 8px 8px 9px rgba(255, 255, 255, 0.2);
-    /* Вы можете изменить толщину границы по желанию */
     border-image: linear-gradient(90deg, rgba(255, 255, 255, 0.30) 0%, #B4C5D8 48%, rgba(255, 255, 255, 0.30) 100%);
     border-image-slice: 1;
 
@@ -36,7 +31,6 @@
         color: rgba(52, 114, 170, 1);
         font-weight: 500;
         line-height: 30px;
-        font-size: 20px;
     } ::placeholder {
         color: rgba(52, 114, 170, 1);
     }

@@ -10,4 +10,8 @@ export const validateEmail = (email) => {
   export const validatePasswords = (password, repeatPassword) => {
     return password === repeatPassword;
   }
+
+export const validateLenght = (password) => {
+    return password.length >= 4;
+}
   

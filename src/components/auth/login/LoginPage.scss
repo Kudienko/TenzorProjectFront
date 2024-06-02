@@ -22,6 +22,7 @@
     border-image: linear-gradient(25deg, rgba(255, 255, 255, 0.30) 5%, #c0c9d3 48%, rgba(255, 255, 255, 0.30) 85%);
     border-image-slice: 1;
     clip-path: inset(0 round 10px); // обрезает элемент по границам, сохраняя скругление
+
 }
 
 .login-container {
@@ -137,6 +138,10 @@ input:focus {
         padding: 10px;
         border-radius: 20px;
         font-size: 18px;
+    }
+
+    .loading_login {
+        width: 19em;
     }
 
     .title {
