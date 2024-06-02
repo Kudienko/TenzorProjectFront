@@ -7,7 +7,6 @@ import { Modal } from './modal/Modal';
 import { ModalAcc } from './modalAccount/ModalAccount';
 import {useDispatch} from "react-redux";
 import { getWeatherThunk } from "../../store/thunks/getWeatherThunk/getWeatherThunk";
-import { loginUser } from "../../store/thunks/getCityThunk/getCityThunk";
 import cloudyVideo from '../../assets/weather/cloudly.mp4';
 import sunnyVideo from '../../assets/weather/sunny.mp4';
 import rainVideo from '../../assets/weather/rain.mp4';
@@ -76,7 +75,6 @@ function MainPage() {
     const [nextVideo, setNextVideo] = useState(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const fetchWeatherData = async (lat = 55.751244, lon = 37.618423) => {
         setIsLoading(true);
@@ -151,7 +149,7 @@ function MainPage() {
                     fetchWeatherData(lat,lon)
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
+                    toast.error("Город не найден")
                 });
         }
     }, [city]);
@@ -163,7 +161,6 @@ function MainPage() {
 
             <Modal
                 isOpen={modalInfoIsOpen}
-
                 onClose={() => setmodalInfoIsOpen(false)}
                 clothes={clothes}
             />

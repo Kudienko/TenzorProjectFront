@@ -5,7 +5,6 @@ export const SearchResultCity = ({ result, setSelectedCity, handleCityChange}) =
 
 
   const onClick = async (result) => {
-    console.log("City selected:", result.city_name);
     setSelectedCity(result.city_name)
     await handleCityChange(result.city_name, result.lat, result.lon)
   }

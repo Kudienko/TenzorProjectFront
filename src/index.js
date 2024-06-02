@@ -12,9 +12,13 @@ import { instanceGetUserData, instanceUpdateUserData } from "./utils/axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+function getObject(key) {
+  const item = localStorage.getItem(key);
+  return item ? JSON.parse(item) : null;
+}
+
 instanceUpdateUserData.interceptors.request.use((config) => {
-  const state = store.getState();
-  const token = selectToken(state);
+  const token = getObject('access_token').access_token
 
   if(token)
       config.headers.Authorization = `Bearer ${token}`;
@@ -38,12 +42,9 @@ instanceGetUserData.interceptors.request.use((config) => {
 })
 
 root.render(
-  <React.StrictMode>
-    
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
 );
