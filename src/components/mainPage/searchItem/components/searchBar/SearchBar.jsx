@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ReactComponent as SearchLogo } from './icons/Search.svg'
+import { ReactComponent as SearchLogo2 } from './icons/Search2.svg'
 import './SearchBar.scss'
 import axios from "axios";
 
@@ -20,7 +20,7 @@ export const SearchBar = ({ setResults, input, setInput }) => {
 
     return (
         <div className='input_wrapper'>
-            <SearchLogo id="search_icon" />
+            <SearchLogo2 id="search_icon" />
             <input type="text" placeholder='Введите название города' value={input} onChange={(e) => setInput(e.target.value)} />
         </div>
     )
