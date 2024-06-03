@@ -29,17 +29,17 @@ function CurrentPlate({setmodalInfoIsOpen, data, setClothes}) {
             ...prevState,
             female: {
                 ...prevState.female,
-                body: [...prevState.female.body, ...female.body],
-                feet: [...prevState.female.feet, ...female.feet],
-                head: [...prevState.female.head, ...female.head],
-                legs: [...prevState.female.legs, ...female.legs],
+                body: [...female.body],
+                feet: [...female.feet],
+                head: [...female.head],
+                legs: [...female.legs],
             },
             male: {
                 ...prevState.male,
-                body: [...prevState.male.body, ...male.body],
-                feet: [...prevState.male.feet, ...male.feet],
-                head: [...prevState.male.head, ...male.head],
-                legs: [...prevState.male.legs, ...male.legs],
+                body: [...male.body],
+                feet: [...male.feet],
+                head: [...male.head],
+                legs: [...male.legs],
             },
         }));
         setmodalInfoIsOpen(true);
