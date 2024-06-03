@@ -48,7 +48,6 @@ function LoginPage() {
         }
 
 
-
         if (valid) {
             const userData = {
                 email: email,
@@ -120,9 +119,13 @@ function LoginPage() {
 
                         <button type="submit" className="login-button">Войти</button>
                     </form>
-
                     <p className="register-prompt">
-                        У вас нет аккаунта?<span className="inciting-text" onClick={moveToLogin}> Зарегистрируйтесь!</span>
+                        <span className="inciting-text"
+                              onClick={() => navigate("/")}>На главную страницу!</span>
+                    </p>
+                    <p className="register-prompt">
+                        У вас нет аккаунта?<span className="inciting-text"
+                                                 onClick={moveToLogin}> Зарегистрируйтесь!</span>
                     </p>
                 </div>
             )}

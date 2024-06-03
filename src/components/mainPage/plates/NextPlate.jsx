@@ -49,10 +49,6 @@ function NextPlate({data, onDateClick, selectedDate}) {
                     onClick={() => onDateClick(item.date, item.weather)}
                     style={{animationDelay: `${index * 0.2}s`}} // Задержка для каждого блока
                 >
-                    <div className="arrow-left">
-                        {/*<button onClick={slideToPrevItem}></button>*/}
-
-                    </div>
                     <SvgItem weather={item.weather}/>
                     <div className="info_text">
                         <h2 className="next_info_date">
@@ -63,10 +59,6 @@ function NextPlate({data, onDateClick, selectedDate}) {
                                 Math.round((item.temp_max + item.temp_min) / 2) :
                                 "+" + Math.round((item.temp_max + item.temp_min) / 2)}
                         </p>
-                    </div>
-                    <div className="arrow-right">
-                        {/*<button onClick={slideToNextItem}><img src={arrow} alt="arrow" className="arrow-icon"/></button>*/}
-
                     </div>
                 </div>
             ),

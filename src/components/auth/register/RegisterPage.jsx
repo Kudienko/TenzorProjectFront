@@ -144,6 +144,10 @@ function RegisterPage() {
 
                         <button type="submit" className="register-button">Регистрация</button>
                     </form>
+                    <p className="login-prompt">
+                        <span className="inciting-text"
+                              onClick={() => navigate("/")}>На главную страницу!</span>
+                    </p>
 
                     <p className="login-prompt">
                         У вас уже есть аккаунт?<span className="inciting-text"

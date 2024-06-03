@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Modal.scss'
-import { Transition } from 'react-transition-group'
-import { ReactComponent as IconClose } from '../../../assets/close.svg'
+import {Transition} from 'react-transition-group'
+import {ReactComponent as IconClose} from '../../../assets/close.svg'
+import arrow from '../../../assets/arrow.png'
 
 import iconhead from '../../../assets/clothes/bodyParts/head.svg'
 import iconfeet from '../../../assets/clothes/bodyParts/Feet.svg'
@@ -104,10 +105,20 @@ const femaleIcons = {
 };
 
 
-export const Modal = ({ isOpen, onClose, clothes }) => {
+export const Modal = ({isOpen, onClose, clothes}) => {
     const onWrapperClick = (event) => {
         if (event.target.classList.contains("modal-wrapper")) onClose()
     }
+
+    const [maleHead, setMaleHead] = useState(0);
+    const [maleBody, setMaleBody] = useState(0);
+    const [maleLegs, setMaleLegs] = useState(0);
+    const [maleFoot, setMaleFoot] = useState(0);
+
+    const [femaleHead, setFemaleHead] = useState(0);
+    const [femaleBody, setFemaleBody] = useState(0);
+    const [femaleLegs, setFemaleLegs] = useState(0);
+    const [femaleFoot, setFemaleFoot] = useState(0);
 
     return (
         <>
@@ -117,24 +128,144 @@ export const Modal = ({ isOpen, onClose, clothes }) => {
                         <div className="modal-wrapper" onClick={onWrapperClick}>
                             <div className="modal-content">
                                 <button className="modal-close-button" onClick={() => onClose()}>
-                                    <IconClose className="close-icon" />
+                                    <IconClose className="close-icon"/>
                                 </button>
                                 <div className="grid-container">
                                     <div className="A"></div>
                                     <div className="B"><img src={male} alt="" className='gender'/></div>
                                     <div className="C"><img src={female} alt="" className='gender'/></div>
                                     <div className="C"><img src={iconhead} alt="" className='bodyPart'/></div>
-                                    <div className="C"><img src={maleIcons.head[clothes.male.head.slice(-1)[0]]} alt="" className="clothes"/></div>
-                                    <div className="D"><img src={femaleIcons.head[clothes.female.head.slice(-1)[0]]} alt="" className="clothes"/></div>
-                                    <div className="D"><img src={icontorso} alt="" className='bodyPart' /></div>
-                                    <div className="D"><img src={maleIcons.body[clothes.male.body.slice(-1)[0]]} alt="" className="clothes"/></div>
-                                    <div className="D"><img src={femaleIcons.body[clothes.female.body.slice(-1)[0]]} alt="" className="clothes"/></div>
-                                    <div className="E"><img src={iconlegs} alt="" className='bodyPart' /></div>
-                                    <div className="E"><img src={maleIcons.legs[clothes.male.legs.slice(-1)[0]]} alt="" className="clothes"/></div>
-                                    <div className="D"><img src={femaleIcons.legs[clothes.female.legs.slice(-1)[0]]} alt="" className="clothes"/></div>
+                                    <div className="C">
+                                        {
+                                            (maleHead + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleHead(maleHead - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={maleIcons.head[clothes.male.head[maleHead]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.male.head.length > (maleHead + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleHead(maleHead + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="D">
+                                        {
+                                            (femaleHead + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleHead(femaleHead - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={femaleIcons.head[clothes.female.head[femaleHead]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.female.head.length > (femaleHead + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleHead(femaleHead + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="D"><img src={icontorso} alt="" className='bodyPart'/></div>
+                                    <div className="D">
+                                        {
+                                            (maleBody + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleBody(maleBody - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={maleIcons.body[clothes.male.body[maleBody]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.male.body.length > (maleBody + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleBody(maleBody + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="D">
+                                        {
+                                            (femaleBody + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleBody(femaleBody - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={femaleIcons.body[clothes.female.body[femaleBody]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.female.body.length > (femaleBody + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleBody(femaleBody + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="E"><img src={iconlegs} alt="" className='bodyPart'/></div>
+                                    <div className="E">
+                                        {
+                                            (maleLegs + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleLegs(maleLegs - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={maleIcons.legs[clothes.male.legs[maleLegs]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.male.legs.length > (maleLegs + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleLegs(maleLegs + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="D">
+                                        {
+                                            (femaleLegs + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleLegs(femaleLegs - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={femaleIcons.legs[clothes.female.legs[femaleLegs]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.female.legs.length > (femaleLegs + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleLegs(femaleLegs + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
                                     <div className="E"><img src={iconfeet} alt="" className='bodyPart'/></div>
-                                    <div className="E"><img src={maleIcons.feet[clothes.male.feet.slice(-1)[0]]} alt="" className="clothes"/></div>
-                                    <div className="D"><img src={femaleIcons.feet[clothes.female.feet.slice(-1)[0]]} alt="" className="clothes"/></div>
+                                    <div className="E">
+                                        {
+                                            (maleFoot + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleFoot(maleFoot - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={maleIcons.feet[clothes.male.feet[maleFoot]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.male.feet.length > (maleFoot + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setMaleFoot(maleFoot + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="D">
+                                        {
+                                            (femaleFoot + 1) > 1 && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleFoot(femaleFoot - 1)}>&#10094;</span>
+                                            )
+                                        }
+                                        <img src={femaleIcons.feet[clothes.female.feet[femaleFoot]]} alt=""
+                                             className="clothes"/>
+                                        {
+                                            clothes.female.feet.length > (femaleFoot + 1) && (
+                                                <span className="arrow"
+                                                      onClick={() => setFemaleFoot(femaleFoot + 1)}>&#10095;</span>
+                                            )
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
