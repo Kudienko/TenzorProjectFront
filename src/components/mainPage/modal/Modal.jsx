@@ -100,7 +100,7 @@ const femaleIcons = {
         'Кеды': sneakersFemale,
         'Ботинки': autumnBootsFemale,
         'Утепленные ботинки': winterBootsFemale,
-        'Кроссовки': sneakersFemale,
+        'Кроссовки': sneakersMale,
     }
 };
 
